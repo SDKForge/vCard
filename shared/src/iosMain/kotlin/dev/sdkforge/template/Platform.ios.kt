@@ -2,8 +2,7 @@ package dev.sdkforge.template
 
 import platform.UIKit.UIDevice
 
-class IOSPlatform : Platform {
-    override val name: String = UIDevice.currentDevice.systemName() + " " + UIDevice.currentDevice.systemVersion
+actual val currentPlatform: Platform = object : Platform {
+    override val name: String get() = UIDevice.currentDevice.systemName
+    override val version: String get() = UIDevice.currentDevice.systemVersion
 }
-
-actual fun getPlatform(): Platform = IOSPlatform()

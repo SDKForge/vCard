@@ -1,7 +1,6 @@
 package dev.sdkforge.template
 
-class AndroidPlatform : Platform {
-    override val name: String = "Android ${android.os.Build.VERSION.SDK_INT}"
+actual val currentPlatform: Platform = object : Platform {
+    override val name: String get() = "Android"
+    override val version: String get() = android.os.Build.VERSION.SDK_INT.toString()
 }
-
-actual fun getPlatform(): Platform = AndroidPlatform()

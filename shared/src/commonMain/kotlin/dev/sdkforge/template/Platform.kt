@@ -2,6 +2,7 @@ package dev.sdkforge.template
 
 interface Platform {
     val name: String
+    val version: String
 }
 
-expect fun getPlatform(): Platform
+expect val currentPlatform: Platform

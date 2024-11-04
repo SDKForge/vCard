@@ -5,11 +5,6 @@ plugins {
     alias(libs.plugins.dokka)
 }
 
-dependencyGuard {
-    // All dependencies included in Production Release APK
-    configuration("releaseRuntimeClasspath")
-}
-
 kotlin {
     androidTarget {
         compilations.all {

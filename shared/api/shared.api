@@ -1,9 +1,8 @@
-public abstract interface class dev/sdkforge/template/Platform {
-	public abstract fun getName ()Ljava/lang/String;
-	public abstract fun getVersion ()Ljava/lang/String;
-}
-
-public final class dev/sdkforge/template/Platform_androidKt {
-	public static final fun getCurrentPlatform ()Ldev/sdkforge/template/Platform;
+public final class dev/sdkforge/template/Library {
+	public static final field INSTANCE Ldev/sdkforge/template/Library;
+	public static final field VERSION Ljava/lang/String;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 

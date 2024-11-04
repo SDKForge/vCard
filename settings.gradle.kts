@@ -35,3 +35,9 @@ rootProject.name = "SDKForgeTemplate"
 
 include(":app-android")
 include(":shared")
+include(":shared-core")
+include(":shared-data")
+include(":shared-di")
+include(":shared-domain")
+include(":shared-network")
+include(":shared-ui")

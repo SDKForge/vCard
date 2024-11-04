@@ -25,27 +25,15 @@ kotlin {
         iosSimulatorArm64(),
     ).forEach {
         it.binaries.framework {
-            baseName = "shared"
+            baseName = "shared-ui"
             isStatic = true
-
-            export(projects.sharedCore)
-            export(projects.sharedData)
-            export(projects.sharedDi)
-            export(projects.sharedDomain)
-            export(projects.sharedNetwork)
-            export(projects.sharedUi)
         }
     }
 
     sourceSets {
         commonMain {
             dependencies {
-                api(projects.sharedCore)
-                api(projects.sharedData)
-                api(projects.sharedDi)
-                api(projects.sharedDomain)
-                api(projects.sharedNetwork)
-                api(projects.sharedUi)
+                // put your multiplatform dependencies here
             }
         }
         commonTest {
@@ -61,7 +49,7 @@ dokka {
 }
 
 android {
-    namespace = "dev.sdkforge.template"
+    namespace = "dev.sdkforge.template.ui"
     compileSdk = 35
 
     defaultConfig {

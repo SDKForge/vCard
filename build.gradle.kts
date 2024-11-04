@@ -1,6 +1,8 @@
 import com.dropbox.gradle.plugins.dependencyguard.DependencyGuardPlugin
 import com.dropbox.gradle.plugins.dependencyguard.DependencyGuardPluginExtension
 import kotlinx.kover.gradle.plugin.KoverGradlePlugin
+import org.jetbrains.dokka.gradle.DokkaExtension
+import org.jetbrains.dokka.gradle.DokkaPlugin
 import org.jlleitschuh.gradle.ktlint.KtlintPlugin
 import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
 
@@ -46,5 +48,11 @@ subprojects {
                 }
             }
         }
+    }
+
+    apply<DokkaPlugin>()
+
+    configure<DokkaExtension> {
+
     }
 }

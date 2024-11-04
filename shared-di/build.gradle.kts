@@ -39,10 +39,6 @@ kotlin {
     }
 }
 
-dokka {
-    // Dokka can be configured here
-}
-
 android {
     namespace = "dev.sdkforge.template.di"
     compileSdk = 35

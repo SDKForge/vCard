@@ -3,6 +3,8 @@
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {
+    includeBuild("build-logic")
+
     repositories {
         google {
             mavenContent {
@@ -35,3 +37,9 @@ rootProject.name = "SDKForgeTemplate"
 
 include(":app-android")
 include(":shared")
+include(":shared-core")
+include(":shared-data")
+include(":shared-di")
+include(":shared-domain")
+include(":shared-network")
+include(":shared-ui")

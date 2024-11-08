@@ -3,46 +3,49 @@ package dev.sdkforge.template.android
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import dev.sdkforge.template.Greeting
+import androidx.compose.ui.unit.dp
+import dev.sdkforge.template.core.currentPlatform
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(
         savedInstanceState: Bundle?,
     ) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         setContent {
             MyApplicationTheme {
                 Surface(
-                    modifier = Modifier.fillMaxSize(),
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .systemBarsPadding(),
                     color = MaterialTheme.colorScheme.background,
                 ) {
-                    GreetingView(Greeting().greet())
+                    Column(
+                        verticalArrangement = Arrangement.spacedBy(
+                            space = 8.dp,
+                            alignment = Alignment.CenterVertically,
+                        ),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                    ) {
+                        Text(
+                            text = "Platform name: ${currentPlatform.name}",
+                        )
+                        Text(
+                            text = "Platform version: ${currentPlatform.version}",
+                        )
+                    }
                 }
             }
         }
-    }
-}
-
-@Composable
-fun GreetingView(
-    text: String,
-) {
-    Text(
-        text = text,
-    )
-}
-
-@Preview
-@Composable
-fun DefaultPreview() {
-    MyApplicationTheme {
-        GreetingView("Hello, Android!")
     }
 }

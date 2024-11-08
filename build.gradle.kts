@@ -1,6 +1,8 @@
 import com.dropbox.gradle.plugins.dependencyguard.DependencyGuardPlugin
 import com.dropbox.gradle.plugins.dependencyguard.DependencyGuardPluginExtension
 import kotlinx.kover.gradle.plugin.KoverGradlePlugin
+import org.jetbrains.dokka.gradle.DokkaExtension
+import org.jetbrains.dokka.gradle.DokkaPlugin
 import org.jlleitschuh.gradle.ktlint.KtlintPlugin
 import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
 
@@ -15,6 +17,8 @@ plugins {
     alias(libs.plugins.dependency.guard).apply(false)
     alias(libs.plugins.kover)
     alias(libs.plugins.ktlint)
+    alias(libs.plugins.build.logic.library.kmp).apply(false)
+    alias(libs.plugins.build.logic.library.android).apply(false)
 }
 
 subprojects {
@@ -46,5 +50,11 @@ subprojects {
                 }
             }
         }
+    }
+
+    apply<DokkaPlugin>()
+
+    configure<DokkaExtension> {
+        // TODO: add shared config
     }
 }

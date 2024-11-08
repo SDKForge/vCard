@@ -2,10 +2,14 @@ import SwiftUI
 import shared
 
 struct ContentView: View {
-	let greet = Greeting().greet()
-
 	var body: some View {
-		Text(greet)
+        VStack(
+            alignment: .center,
+            spacing: 8
+        ) {
+            Text("Platform name: \(Platform_iosKt.currentPlatform.name)")
+            Text("Platform version: \(Platform_iosKt.currentPlatform.version)")
+        }
 	}
 }
 

@@ -3,28 +3,11 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.binaryCompatibilityValidator)
     alias(libs.plugins.dokka)
+    alias(libs.plugins.build.logic.library.kmp)
+    alias(libs.plugins.build.logic.library.android)
 }
 
 kotlin {
-    androidTarget {
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = "17"
-            }
-        }
-    }
-
-    listOf(
-        iosX64(),
-        iosArm64(),
-        iosSimulatorArm64(),
-    ).forEach {
-        it.binaries.framework {
-            baseName = "shared-core"
-            isStatic = true
-        }
-    }
-
     sourceSets {
         commonMain {
             dependencies {
@@ -41,13 +24,4 @@ kotlin {
 
 android {
     namespace = "dev.sdkforge.template.core"
-    compileSdk = 35
-
-    defaultConfig {
-        minSdk = 21
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
 }

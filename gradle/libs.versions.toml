@@ -11,6 +11,8 @@ kover = "0.8.3"
 ktlint = "12.1.1"
 
 [libraries]
+android-gradle-plugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
+kotlin-gradle-plugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
 compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
@@ -31,3 +33,6 @@ dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 dependency-guard = { id = "com.dropbox.dependency-guard", version.ref = "dependency-guard" }
 kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
 ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint" }
+
+build-logic-library-kmp = { id = "dev.sdkforge.buildlogic.library.kmp", version = "unspecified" }
+build-logic-library-android = { id = "dev.sdkforge.buildlogic.library.android", version = "unspecified" }

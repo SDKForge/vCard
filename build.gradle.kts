@@ -17,6 +17,8 @@ plugins {
     alias(libs.plugins.dependency.guard).apply(false)
     alias(libs.plugins.kover)
     alias(libs.plugins.ktlint)
+    alias(libs.plugins.build.logic.library.kmp).apply(false)
+    alias(libs.plugins.build.logic.library.android).apply(false)
 }
 
 subprojects {
@@ -53,6 +55,6 @@ subprojects {
     apply<DokkaPlugin>()
 
     configure<DokkaExtension> {
-
+        // TODO: add shared config
     }
 }

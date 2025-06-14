@@ -1,5 +1,6 @@
 import com.dropbox.gradle.plugins.dependencyguard.DependencyGuardPlugin
 import com.dropbox.gradle.plugins.dependencyguard.DependencyGuardPluginExtension
+import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import kotlinx.kover.gradle.plugin.KoverGradlePlugin
 import org.jetbrains.dokka.gradle.DokkaExtension
 import org.jetbrains.dokka.gradle.DokkaPlugin
@@ -17,6 +18,7 @@ plugins {
     alias(libs.plugins.dependency.guard).apply(false)
     alias(libs.plugins.kover)
     alias(libs.plugins.ktlint)
+    alias(libs.plugins.versions)
     alias(libs.plugins.build.logic.library.kmp).apply(false)
     alias(libs.plugins.build.logic.library.android).apply(false)
 }
@@ -36,25 +38,42 @@ subprojects {
         configuration("releaseRuntimeClasspath")
     }
 
-    dependencies {
-        apply<KoverGradlePlugin>()
-        println("Dynamically used code coverage for ${project.path}")
-        kover(project(project.path))
-    }
-
-    kover {
-        reports {
-            filters {
-                excludes {
-                    // TODO: add rules
-                }
-            }
-        }
-    }
-
     apply<DokkaPlugin>()
 
     configure<DokkaExtension> {
         // TODO: add shared config
+    }
+
+    tasks.withType<DependencyUpdatesTask> {
+        fun isNonStable(
+            version: String,
+        ): Boolean {
+            val stableKeyword = listOf("RELEASE", "FINAL", "GA").any { version.uppercase().contains(it) }
+            val regex = "^[0-9,.v-]+(-r)?$".toRegex()
+            val isStable = stableKeyword || regex.matches(version)
+            return isStable.not()
+        }
+
+        rejectVersionIf {
+            isNonStable(candidate.version)
+        }
+    }
+}
+
+kover {
+    reports {
+        filters {
+            excludes {
+                // TODO: add rules
+            }
+        }
+    }
+}
+
+dependencies {
+    subprojects {
+        apply<KoverGradlePlugin>()
+        println("Dynamically used code coverage for ${project.path}")
+        kover(this)
     }
 }

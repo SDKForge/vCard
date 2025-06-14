@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "dev.sdkforge.template.android"
-    compileSdk = 34
+    compileSdk = 35
     defaultConfig {
         applicationId = "dev.sdkforge.template.android"
         minSdk = 21

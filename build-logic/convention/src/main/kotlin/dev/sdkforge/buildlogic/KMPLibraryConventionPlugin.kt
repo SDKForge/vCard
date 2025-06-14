@@ -1,10 +1,12 @@
 package dev.sdkforge.buildlogic
 
-import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
+import org.gradle.kotlin.dsl.withType
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
 
 class KMPLibraryConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
@@ -15,9 +17,9 @@ class KMPLibraryConventionPlugin : Plugin<Project> {
 
             configure<KotlinMultiplatformExtension> {
                 androidTarget {
-                    compilations.all {
-                        kotlinOptions {
-                            jvmTarget = JavaVersion.VERSION_17.toString()
+                    tasks.withType(KotlinJvmCompile::class).configureEach {
+                        compilerOptions {
+                            jvmTarget.set(JvmTarget.JVM_17)
                         }
                     }
                 }

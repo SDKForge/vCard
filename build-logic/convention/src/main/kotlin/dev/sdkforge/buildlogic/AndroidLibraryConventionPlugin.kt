@@ -113,7 +113,7 @@ private fun LibraryExtension.configureLint() {
         // Set the severity of the given issues to ignore (same as disabling the check)
         ignore += listOf()
         // Set the severity of the given issues to informational
-        informational += listOf()
+        informational += listOf("UseTomlInstead", "NewerVersionAvailable")
         // Use (or create) a baseline file for issues that should not be reported
         // baseline = file("lint-baseline.xml")
         // Normally most lint checks are not run on test sources (except the checks

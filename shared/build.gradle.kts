@@ -9,6 +9,7 @@ plugins {
     alias(libs.plugins.dokka)
     alias(libs.plugins.build.logic.library.kmp)
     alias(libs.plugins.build.logic.library.android)
+    alias(libs.plugins.build.logic.library.publishing)
 }
 
 kotlin {

@@ -21,6 +21,7 @@ plugins {
     alias(libs.plugins.versions)
     alias(libs.plugins.build.logic.library.kmp).apply(false)
     alias(libs.plugins.build.logic.library.android).apply(false)
+    alias(libs.plugins.build.logic.library.publishing).apply(false)
 }
 
 subprojects {

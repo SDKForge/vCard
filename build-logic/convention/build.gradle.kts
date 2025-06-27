@@ -39,5 +39,9 @@ gradlePlugin {
             id = "dev.sdkforge.buildlogic.library.kmp"
             implementationClass = "dev.sdkforge.buildlogic.KMPLibraryConventionPlugin"
         }
+        register("dev.sdkforge.buildlogic.library.publishing") {
+            id = "dev.sdkforge.buildlogic.library.publishing"
+            implementationClass = "dev.sdkforge.buildlogic.PublishingConventionPlugin"
+        }
     }
 }

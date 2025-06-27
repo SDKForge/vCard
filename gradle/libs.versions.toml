@@ -38,3 +38,4 @@ versions = { id = "com.github.ben-manes.versions", version.ref = "versions" }
 
 build-logic-library-kmp = { id = "dev.sdkforge.buildlogic.library.kmp" }
 build-logic-library-android = { id = "dev.sdkforge.buildlogic.library.android" }
+build-logic-library-publishing = { id = "dev.sdkforge.buildlogic.library.publishing" }

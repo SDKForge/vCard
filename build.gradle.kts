@@ -1,5 +1,6 @@
 import com.dropbox.gradle.plugins.dependencyguard.DependencyGuardPlugin
 import com.dropbox.gradle.plugins.dependencyguard.DependencyGuardPluginExtension
+import com.github.benmanes.gradle.versions.VersionsPlugin
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import kotlinx.kover.gradle.plugin.KoverGradlePlugin
 import org.jetbrains.dokka.gradle.DokkaExtension
@@ -24,6 +25,24 @@ plugins {
     alias(libs.plugins.build.logic.library.publishing).apply(false)
 }
 
+allprojects {
+    apply<VersionsPlugin>()
+
+    tasks.withType<DependencyUpdatesTask> {
+        fun isNonStable(
+            version: String,
+        ): Boolean {
+            val stableKeyword = listOf("RELEASE", "FINAL", "GA").any { version.uppercase().contains(it) }
+            val regex = "^[0-9,.v-]+(-r)?$".toRegex()
+            val isStable = stableKeyword || regex.matches(version)
+            return isStable.not()
+        }
+        rejectVersionIf {
+            isNonStable(candidate.version)
+        }
+    }
+}
+
 subprojects {
     apply<KtlintPlugin>()
 
@@ -43,21 +62,6 @@ subprojects {
 
     configure<DokkaExtension> {
         // TODO: add shared config
-    }
-
-    tasks.withType<DependencyUpdatesTask> {
-        fun isNonStable(
-            version: String,
-        ): Boolean {
-            val stableKeyword = listOf("RELEASE", "FINAL", "GA").any { version.uppercase().contains(it) }
-            val regex = "^[0-9,.v-]+(-r)?$".toRegex()
-            val isStable = stableKeyword || regex.matches(version)
-            return isStable.not()
-        }
-
-        rejectVersionIf {
-            isNonStable(candidate.version)
-        }
     }
 }
 

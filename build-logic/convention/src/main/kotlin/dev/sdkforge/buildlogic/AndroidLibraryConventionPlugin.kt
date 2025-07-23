@@ -29,7 +29,7 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
 }
 
 private fun CommonExtension<*, *, *, *, *, *>.configureSDK() {
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 21
@@ -132,6 +132,6 @@ private fun LibraryExtension.configureLint() {
         checkDependencies = true
         // targetSdk version used when generating a lint report for a library.
         // Must be equal or higher than main target SDK. Must be set for libraries only.
-        targetSdk = 35
+        targetSdk = 36
     }
 }

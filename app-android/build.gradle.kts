@@ -6,11 +6,11 @@ plugins {
 
 android {
     namespace = "dev.sdkforge.template.android"
-    compileSdk = 35
+    compileSdk = 36
     defaultConfig {
         applicationId = "dev.sdkforge.template.android"
         minSdk = 21
-        targetSdk = 35
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
     }

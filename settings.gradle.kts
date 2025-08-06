@@ -36,6 +36,7 @@ dependencyResolutionManagement {
 rootProject.name = "SDKForgeTemplate"
 
 include(":app-android")
+include(":app-shared")
 include(":shared")
 include(":shared-core")
 include(":shared-data")

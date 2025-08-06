@@ -1,30 +1,25 @@
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
-    alias(libs.plugins.binaryCompatibilityValidator)
-    alias(libs.plugins.dokka)
     alias(libs.plugins.compose.multiplatform)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.build.logic.library.kmp)
     alias(libs.plugins.build.logic.library.android)
-    alias(libs.plugins.build.logic.library.publishing)
 }
 
 kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                // put your multiplatform dependencies here
-            }
-        }
-        commonTest {
-            dependencies {
-                implementation(libs.kotlin.test)
+                api(projects.shared)
+
+                api(compose.foundation)
+                api(compose.material3)
             }
         }
     }
 }
 
 android {
-    namespace = "dev.sdkforge.template.ui"
+    namespace = "dev.sdkforge.template.app"
 }

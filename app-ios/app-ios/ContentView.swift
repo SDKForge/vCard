@@ -1,16 +1,12 @@
 import SwiftUI
-import shared
+import app_shared
 
-struct ContentView: View {
-	var body: some View {
-        VStack(
-            alignment: .center,
-            spacing: 8
-        ) {
-            Text("Platform name: \(Platform_iosKt.currentPlatform.name)")
-            Text("Platform version: \(Platform_iosKt.currentPlatform.version)")
-        }
-	}
+struct ContentView: UIViewControllerRepresentable {
+    func makeUIViewController(context: Context) -> UIViewController {
+        ComposeAppViewControllerKt.create()
+    }
+    
+    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
 }
 
 struct ContentView_Previews: PreviewProvider {

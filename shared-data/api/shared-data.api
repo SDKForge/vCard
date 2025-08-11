@@ -1,0 +1,14 @@
+public final class dev/sdkforge/vcard/data/io/FileKt {
+	public static final fun getContentType (Ldev/sdkforge/vcard/domain/VCard;)Ljava/lang/String;
+	public static final fun getFileExtensions (Ldev/sdkforge/vcard/domain/VCard;)Ljava/util/List;
+}
+
+public final class dev/sdkforge/vcard/data/parsing/ReaderKt {
+	public static final fun readVCard (Ljava/lang/String;)Ldev/sdkforge/vcard/domain/VCard;
+	public static final fun readVCard (Lokio/Path;)Ldev/sdkforge/vcard/domain/VCard;
+}
+
+public final class dev/sdkforge/vcard/data/parsing/Reader_androidKt {
+	public static final fun readVCard (Ljava/io/File;)Ldev/sdkforge/vcard/domain/VCard;
+}
+

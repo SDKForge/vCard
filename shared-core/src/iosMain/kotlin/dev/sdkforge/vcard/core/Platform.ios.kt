@@ -1,4 +1,4 @@
-package dev.sdkforge.template.core
+package dev.sdkforge.vcard.core
 
 import platform.UIKit.UIDevice
 

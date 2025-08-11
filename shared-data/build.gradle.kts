@@ -12,7 +12,9 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                // put your multiplatform dependencies here
+                implementation(projects.sharedDomain)
+
+                implementation("com.squareup.okio:okio:3.16.0")
             }
         }
         commonTest {

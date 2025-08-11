@@ -1,0 +1,266 @@
+public final class dev/sdkforge/vcard/domain/FieldsKt {
+	public static final fun getAddress (Ldev/sdkforge/vcard/domain/VCard;)Ljava/util/List;
+	public static final fun getAnniversary (Ldev/sdkforge/vcard/domain/VCard;)Ljava/lang/String;
+	public static final fun getBegin (Ldev/sdkforge/vcard/domain/VCard;)Ljava/lang/String;
+	public static final fun getBirthday (Ldev/sdkforge/vcard/domain/VCard;)Ljava/lang/String;
+	public static final fun getBusyCalendarUri (Ldev/sdkforge/vcard/domain/VCard;)Ljava/util/List;
+	public static final fun getCalendarUri (Ldev/sdkforge/vcard/domain/VCard;)Ljava/util/List;
+	public static final fun getCalendarUserUri (Ldev/sdkforge/vcard/domain/VCard;)Ljava/util/List;
+	public static final fun getCategories (Ldev/sdkforge/vcard/domain/VCard;)Ljava/util/List;
+	public static final fun getClientPIDMap (Ldev/sdkforge/vcard/domain/VCard;)Ljava/util/List;
+	public static final fun getEmail (Ldev/sdkforge/vcard/domain/VCard;)Ljava/util/List;
+	public static final fun getEnd (Ldev/sdkforge/vcard/domain/VCard;)Ljava/lang/String;
+	public static final fun getFormattedName (Ldev/sdkforge/vcard/domain/VCard;)Ljava/util/List;
+	public static final fun getGender (Ldev/sdkforge/vcard/domain/VCard;)Ljava/lang/String;
+	public static final fun getGeo (Ldev/sdkforge/vcard/domain/VCard;)Ljava/util/List;
+	public static final fun getImpp (Ldev/sdkforge/vcard/domain/VCard;)Ljava/util/List;
+	public static final fun getKey (Ldev/sdkforge/vcard/domain/VCard;)Ljava/util/List;
+	public static final fun getKind (Ldev/sdkforge/vcard/domain/VCard;)Ljava/lang/String;
+	public static final fun getLanguage (Ldev/sdkforge/vcard/domain/VCard;)Ljava/util/List;
+	public static final fun getLogo (Ldev/sdkforge/vcard/domain/VCard;)Ljava/util/List;
+	public static final fun getMember (Ldev/sdkforge/vcard/domain/VCard;)Ljava/util/List;
+	public static final fun getName (Ldev/sdkforge/vcard/domain/VCard;)Ljava/lang/String;
+	public static final fun getNickname (Ldev/sdkforge/vcard/domain/VCard;)Ljava/util/List;
+	public static final fun getNote (Ldev/sdkforge/vcard/domain/VCard;)Ljava/util/List;
+	public static final fun getOrganizationalName (Ldev/sdkforge/vcard/domain/VCard;)Ljava/util/List;
+	public static final fun getPhoto (Ldev/sdkforge/vcard/domain/VCard;)Ljava/util/List;
+	public static final fun getProductId (Ldev/sdkforge/vcard/domain/VCard;)Ljava/lang/String;
+	public static final fun getRelated (Ldev/sdkforge/vcard/domain/VCard;)Ljava/util/List;
+	public static final fun getRevision (Ldev/sdkforge/vcard/domain/VCard;)Ljava/lang/String;
+	public static final fun getRole (Ldev/sdkforge/vcard/domain/VCard;)Ljava/util/List;
+	public static final fun getSound (Ldev/sdkforge/vcard/domain/VCard;)Ljava/util/List;
+	public static final fun getSource (Ldev/sdkforge/vcard/domain/VCard;)Ljava/util/List;
+	public static final fun getTelephone (Ldev/sdkforge/vcard/domain/VCard;)Ljava/util/List;
+	public static final fun getTimeZone (Ldev/sdkforge/vcard/domain/VCard;)Ljava/util/List;
+	public static final fun getTitle (Ldev/sdkforge/vcard/domain/VCard;)Ljava/util/List;
+	public static final fun getUid (Ldev/sdkforge/vcard/domain/VCard;)Ljava/lang/String;
+	public static final fun getUrl (Ldev/sdkforge/vcard/domain/VCard;)Ljava/util/List;
+	public static final fun getVersion (Ldev/sdkforge/vcard/domain/VCard;)Ljava/lang/String;
+	public static final fun getXml (Ldev/sdkforge/vcard/domain/VCard;)Ljava/util/List;
+}
+
+public abstract interface class dev/sdkforge/vcard/domain/VCard {
+	public abstract fun get (Ldev/sdkforge/vcard/domain/property/Property;)Ljava/util/List;
+}
+
+public final class dev/sdkforge/vcard/domain/property/Address : dev/sdkforge/vcard/domain/property/Property$DeliveryAddressing {
+	public static final field INSTANCE Ldev/sdkforge/vcard/domain/property/Address;
+	public fun getKey ()Ljava/lang/String;
+}
+
+public final class dev/sdkforge/vcard/domain/property/Anniversary : dev/sdkforge/vcard/domain/property/Property$Identification {
+	public static final field INSTANCE Ldev/sdkforge/vcard/domain/property/Anniversary;
+	public fun getKey ()Ljava/lang/String;
+}
+
+public final class dev/sdkforge/vcard/domain/property/Begin : dev/sdkforge/vcard/domain/property/Property$General {
+	public static final field INSTANCE Ldev/sdkforge/vcard/domain/property/Begin;
+	public fun getKey ()Ljava/lang/String;
+}
+
+public final class dev/sdkforge/vcard/domain/property/Birthday : dev/sdkforge/vcard/domain/property/Property$Identification {
+	public static final field INSTANCE Ldev/sdkforge/vcard/domain/property/Birthday;
+	public fun getKey ()Ljava/lang/String;
+}
+
+public final class dev/sdkforge/vcard/domain/property/BusyCalendarUri : dev/sdkforge/vcard/domain/property/Property$Calendar {
+	public static final field INSTANCE Ldev/sdkforge/vcard/domain/property/BusyCalendarUri;
+	public fun getKey ()Ljava/lang/String;
+}
+
+public final class dev/sdkforge/vcard/domain/property/CalendarUri : dev/sdkforge/vcard/domain/property/Property$Calendar {
+	public static final field INSTANCE Ldev/sdkforge/vcard/domain/property/CalendarUri;
+	public fun getKey ()Ljava/lang/String;
+}
+
+public final class dev/sdkforge/vcard/domain/property/CalendarUserUri : dev/sdkforge/vcard/domain/property/Property$Calendar {
+	public static final field INSTANCE Ldev/sdkforge/vcard/domain/property/CalendarUserUri;
+	public fun getKey ()Ljava/lang/String;
+}
+
+public final class dev/sdkforge/vcard/domain/property/Categories : dev/sdkforge/vcard/domain/property/Property$Explanatory {
+	public static final field INSTANCE Ldev/sdkforge/vcard/domain/property/Categories;
+	public fun getKey ()Ljava/lang/String;
+}
+
+public final class dev/sdkforge/vcard/domain/property/ClientPIDMap : dev/sdkforge/vcard/domain/property/Property$Explanatory {
+	public static final field INSTANCE Ldev/sdkforge/vcard/domain/property/ClientPIDMap;
+	public fun getKey ()Ljava/lang/String;
+}
+
+public final class dev/sdkforge/vcard/domain/property/Email : dev/sdkforge/vcard/domain/property/Property$Communications {
+	public static final field INSTANCE Ldev/sdkforge/vcard/domain/property/Email;
+	public fun getKey ()Ljava/lang/String;
+}
+
+public final class dev/sdkforge/vcard/domain/property/End : dev/sdkforge/vcard/domain/property/Property$General {
+	public static final field INSTANCE Ldev/sdkforge/vcard/domain/property/End;
+	public fun getKey ()Ljava/lang/String;
+}
+
+public final class dev/sdkforge/vcard/domain/property/FormattedName : dev/sdkforge/vcard/domain/property/Property$Identification {
+	public static final field INSTANCE Ldev/sdkforge/vcard/domain/property/FormattedName;
+	public fun getKey ()Ljava/lang/String;
+}
+
+public final class dev/sdkforge/vcard/domain/property/Gender : dev/sdkforge/vcard/domain/property/Property$Identification {
+	public static final field INSTANCE Ldev/sdkforge/vcard/domain/property/Gender;
+	public fun getKey ()Ljava/lang/String;
+}
+
+public final class dev/sdkforge/vcard/domain/property/Geo : dev/sdkforge/vcard/domain/property/Property$Geographical {
+	public static final field INSTANCE Ldev/sdkforge/vcard/domain/property/Geo;
+	public fun getKey ()Ljava/lang/String;
+}
+
+public final class dev/sdkforge/vcard/domain/property/IMPP : dev/sdkforge/vcard/domain/property/Property$Communications {
+	public static final field INSTANCE Ldev/sdkforge/vcard/domain/property/IMPP;
+	public fun getKey ()Ljava/lang/String;
+}
+
+public final class dev/sdkforge/vcard/domain/property/Key : dev/sdkforge/vcard/domain/property/Property$Security {
+	public static final field INSTANCE Ldev/sdkforge/vcard/domain/property/Key;
+	public fun getKey ()Ljava/lang/String;
+}
+
+public final class dev/sdkforge/vcard/domain/property/Kind : dev/sdkforge/vcard/domain/property/Property$General {
+	public static final field INSTANCE Ldev/sdkforge/vcard/domain/property/Kind;
+	public fun getKey ()Ljava/lang/String;
+}
+
+public final class dev/sdkforge/vcard/domain/property/Language : dev/sdkforge/vcard/domain/property/Property$Communications {
+	public static final field INSTANCE Ldev/sdkforge/vcard/domain/property/Language;
+	public fun getKey ()Ljava/lang/String;
+}
+
+public final class dev/sdkforge/vcard/domain/property/Logo : dev/sdkforge/vcard/domain/property/Property$Organizational {
+	public static final field INSTANCE Ldev/sdkforge/vcard/domain/property/Logo;
+	public fun getKey ()Ljava/lang/String;
+}
+
+public final class dev/sdkforge/vcard/domain/property/Member : dev/sdkforge/vcard/domain/property/Property$Organizational {
+	public static final field INSTANCE Ldev/sdkforge/vcard/domain/property/Member;
+	public fun getKey ()Ljava/lang/String;
+}
+
+public final class dev/sdkforge/vcard/domain/property/Name : dev/sdkforge/vcard/domain/property/Property$Identification {
+	public static final field INSTANCE Ldev/sdkforge/vcard/domain/property/Name;
+	public fun getKey ()Ljava/lang/String;
+}
+
+public final class dev/sdkforge/vcard/domain/property/Nickname : dev/sdkforge/vcard/domain/property/Property$Identification {
+	public static final field INSTANCE Ldev/sdkforge/vcard/domain/property/Nickname;
+	public fun getKey ()Ljava/lang/String;
+}
+
+public final class dev/sdkforge/vcard/domain/property/Note : dev/sdkforge/vcard/domain/property/Property$Explanatory {
+	public static final field INSTANCE Ldev/sdkforge/vcard/domain/property/Note;
+	public fun getKey ()Ljava/lang/String;
+}
+
+public final class dev/sdkforge/vcard/domain/property/OrganizationalName : dev/sdkforge/vcard/domain/property/Property$Organizational {
+	public static final field INSTANCE Ldev/sdkforge/vcard/domain/property/OrganizationalName;
+	public fun getKey ()Ljava/lang/String;
+}
+
+public final class dev/sdkforge/vcard/domain/property/Photo : dev/sdkforge/vcard/domain/property/Property$Identification {
+	public static final field INSTANCE Ldev/sdkforge/vcard/domain/property/Photo;
+	public fun getKey ()Ljava/lang/String;
+}
+
+public final class dev/sdkforge/vcard/domain/property/ProductId : dev/sdkforge/vcard/domain/property/Property$Explanatory {
+	public static final field INSTANCE Ldev/sdkforge/vcard/domain/property/ProductId;
+	public fun getKey ()Ljava/lang/String;
+}
+
+public abstract interface class dev/sdkforge/vcard/domain/property/Property {
+	public abstract fun getKey ()Ljava/lang/String;
+}
+
+public abstract interface class dev/sdkforge/vcard/domain/property/Property$Calendar : dev/sdkforge/vcard/domain/property/Property {
+}
+
+public abstract interface class dev/sdkforge/vcard/domain/property/Property$Communications : dev/sdkforge/vcard/domain/property/Property {
+}
+
+public abstract interface class dev/sdkforge/vcard/domain/property/Property$DeliveryAddressing : dev/sdkforge/vcard/domain/property/Property {
+}
+
+public abstract interface class dev/sdkforge/vcard/domain/property/Property$Explanatory : dev/sdkforge/vcard/domain/property/Property {
+}
+
+public abstract interface class dev/sdkforge/vcard/domain/property/Property$General : dev/sdkforge/vcard/domain/property/Property {
+}
+
+public abstract interface class dev/sdkforge/vcard/domain/property/Property$Geographical : dev/sdkforge/vcard/domain/property/Property {
+}
+
+public abstract interface class dev/sdkforge/vcard/domain/property/Property$Identification : dev/sdkforge/vcard/domain/property/Property {
+}
+
+public abstract interface class dev/sdkforge/vcard/domain/property/Property$Organizational : dev/sdkforge/vcard/domain/property/Property {
+}
+
+public abstract interface class dev/sdkforge/vcard/domain/property/Property$Security : dev/sdkforge/vcard/domain/property/Property {
+}
+
+public final class dev/sdkforge/vcard/domain/property/Related : dev/sdkforge/vcard/domain/property/Property$Organizational {
+	public static final field INSTANCE Ldev/sdkforge/vcard/domain/property/Related;
+	public fun getKey ()Ljava/lang/String;
+}
+
+public final class dev/sdkforge/vcard/domain/property/Revision : dev/sdkforge/vcard/domain/property/Property$Explanatory {
+	public static final field INSTANCE Ldev/sdkforge/vcard/domain/property/Revision;
+	public fun getKey ()Ljava/lang/String;
+}
+
+public final class dev/sdkforge/vcard/domain/property/Role : dev/sdkforge/vcard/domain/property/Property$Organizational {
+	public static final field INSTANCE Ldev/sdkforge/vcard/domain/property/Role;
+	public fun getKey ()Ljava/lang/String;
+}
+
+public final class dev/sdkforge/vcard/domain/property/Sound : dev/sdkforge/vcard/domain/property/Property$Explanatory {
+	public static final field INSTANCE Ldev/sdkforge/vcard/domain/property/Sound;
+	public fun getKey ()Ljava/lang/String;
+}
+
+public final class dev/sdkforge/vcard/domain/property/Source : dev/sdkforge/vcard/domain/property/Property$General {
+	public static final field INSTANCE Ldev/sdkforge/vcard/domain/property/Source;
+	public fun getKey ()Ljava/lang/String;
+}
+
+public final class dev/sdkforge/vcard/domain/property/Telephone : dev/sdkforge/vcard/domain/property/Property$Communications {
+	public static final field INSTANCE Ldev/sdkforge/vcard/domain/property/Telephone;
+	public fun getKey ()Ljava/lang/String;
+}
+
+public final class dev/sdkforge/vcard/domain/property/TimeZone : dev/sdkforge/vcard/domain/property/Property$Geographical {
+	public static final field INSTANCE Ldev/sdkforge/vcard/domain/property/TimeZone;
+	public fun getKey ()Ljava/lang/String;
+}
+
+public final class dev/sdkforge/vcard/domain/property/Title : dev/sdkforge/vcard/domain/property/Property$Organizational {
+	public static final field INSTANCE Ldev/sdkforge/vcard/domain/property/Title;
+	public fun getKey ()Ljava/lang/String;
+}
+
+public final class dev/sdkforge/vcard/domain/property/UID : dev/sdkforge/vcard/domain/property/Property$Explanatory {
+	public static final field INSTANCE Ldev/sdkforge/vcard/domain/property/UID;
+	public fun getKey ()Ljava/lang/String;
+}
+
+public final class dev/sdkforge/vcard/domain/property/URL : dev/sdkforge/vcard/domain/property/Property$Explanatory {
+	public static final field INSTANCE Ldev/sdkforge/vcard/domain/property/URL;
+	public fun getKey ()Ljava/lang/String;
+}
+
+public final class dev/sdkforge/vcard/domain/property/Version : dev/sdkforge/vcard/domain/property/Property$Explanatory {
+	public static final field INSTANCE Ldev/sdkforge/vcard/domain/property/Version;
+	public fun getKey ()Ljava/lang/String;
+}
+
+public final class dev/sdkforge/vcard/domain/property/Xml : dev/sdkforge/vcard/domain/property/Property$General {
+	public static final field INSTANCE Ldev/sdkforge/vcard/domain/property/Xml;
+	public fun getKey ()Ljava/lang/String;
+}
+

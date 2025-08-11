@@ -1,6 +1,6 @@
 @file:Suppress("ktlint:standard:filename")
 
-package dev.sdkforge.template.core
+package dev.sdkforge.vcard.core
 
 import org.junit.Assert.assertTrue
 import org.junit.Test

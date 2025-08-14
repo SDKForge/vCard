@@ -43,5 +43,9 @@ gradlePlugin {
             id = "dev.sdkforge.buildlogic.library.publishing"
             implementationClass = "dev.sdkforge.buildlogic.PublishingConventionPlugin"
         }
+        register("dev.sdkforge.buildlogic.root") {
+            id = "dev.sdkforge.buildlogic.root"
+            implementationClass = "dev.sdkforge.buildlogic.RootProjectPlugin"
+        }
     }
 }

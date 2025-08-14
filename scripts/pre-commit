@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+echo "Running commit check..."
+
+./gradlew build lint ktlintCheck dependencyGuard apiCheck dokkaGenerate
+EXIT_CODE=$?
+if [ $EXIT_CODE -ne 0 ]; then
+  echo "Commit check failed!"
+  exit $EXIT_CODE
+fi
+echo "Commiting..."

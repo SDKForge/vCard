@@ -44,3 +44,5 @@ include(":shared-di")
 include(":shared-domain")
 include(":shared-network")
 include(":shared-ui")
+
+include(":internal-ktlint")

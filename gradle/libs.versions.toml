@@ -28,7 +28,6 @@ androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
-kotlinCocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlin" }
 compose-multiplatform = { id = "org.jetbrains.compose", version.ref = "composeMultiplatform" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 binaryCompatibilityValidator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "binary-compatibility-validator" }
@@ -38,6 +37,7 @@ kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
 ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint" }
 versions = { id = "com.github.ben-manes.versions", version.ref = "versions" }
 
+build-logic-root = { id = "dev.sdkforge.buildlogic.root" }
 build-logic-library-kmp = { id = "dev.sdkforge.buildlogic.library.kmp" }
 build-logic-library-android = { id = "dev.sdkforge.buildlogic.library.android" }
 build-logic-library-publishing = { id = "dev.sdkforge.buildlogic.library.publishing" }

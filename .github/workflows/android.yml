@@ -24,6 +24,8 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
+    - name: Run lint
+      run: ./gradlew lint
     - name: Run ktlintCheck
       run: ./gradlew ktlintCheck
     - name: Run dependencyGuard

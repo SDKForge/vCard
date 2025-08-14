@@ -13,6 +13,7 @@ plugins {
     alias(libs.plugins.androidLibrary).apply(false)
     alias(libs.plugins.kotlinAndroid).apply(false)
     alias(libs.plugins.kotlinMultiplatform).apply(false)
+    alias(libs.plugins.compose.multiplatform).apply(false)
     alias(libs.plugins.compose.compiler).apply(false)
     alias(libs.plugins.binaryCompatibilityValidator).apply(false)
     alias(libs.plugins.dokka).apply(false)
@@ -20,10 +21,13 @@ plugins {
     alias(libs.plugins.kover)
     alias(libs.plugins.ktlint)
     alias(libs.plugins.versions)
+    alias(libs.plugins.build.logic.root).apply(false)
     alias(libs.plugins.build.logic.library.kmp).apply(false)
     alias(libs.plugins.build.logic.library.android).apply(false)
     alias(libs.plugins.build.logic.library.publishing).apply(false)
 }
+
+apply(plugin = libs.plugins.build.logic.root.get().pluginId)
 
 allprojects {
     apply<VersionsPlugin>()
@@ -52,16 +56,26 @@ subprojects {
         }
     }
 
-    apply<DependencyGuardPlugin>()
+    // published code configuration
+    if (name.startsWith("shared")) {
+        apply<DependencyGuardPlugin>()
 
-    configure<DependencyGuardPluginExtension> {
-        configuration("releaseRuntimeClasspath")
+        configure<DependencyGuardPluginExtension> {
+            configuration("releaseRuntimeClasspath")
+        }
+
+        apply<DokkaPlugin>()
+
+        configure<DokkaExtension> {
+            // TODO: add shared config
+        }
     }
 
-    apply<DokkaPlugin>()
-
-    configure<DokkaExtension> {
-        // TODO: add shared config
+    // apply only to forked projects
+    if (rootProject.name != "SDKForgeTemplate") {
+        dependencies {
+            ktlint(project(":internal-ktlint"))
+        }
     }
 }
 
@@ -77,8 +91,11 @@ kover {
 
 dependencies {
     subprojects {
-        apply<KoverGradlePlugin>()
-        println("Dynamically used code coverage for ${project.path}")
-        kover(this)
+        // published code code coverage
+        if (name.startsWith("shared")) {
+            apply<KoverGradlePlugin>()
+            println("Dynamically used code coverage for ${project.path}")
+            kover(this)
+        }
     }
 }

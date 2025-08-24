@@ -16,6 +16,12 @@ class KMPLibraryConventionPlugin : Plugin<Project> {
             }
 
             configure<KotlinMultiplatformExtension> {
+                compilerOptions {
+                    this.freeCompilerArgs.addAll(
+                        "-Xexpect-actual-classes",
+                    )
+                }
+
                 androidTarget {
                     tasks.withType(KotlinJvmCompile::class).configureEach {
                         compilerOptions {

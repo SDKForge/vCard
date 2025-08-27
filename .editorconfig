@@ -17,6 +17,8 @@ ij_kotlin_name_count_to_use_star_import_for_members = 2147483647
 # ktlint rules
 ktlint_code_style = android_studio
 
+ktlint_standard_no-unused-imports = enabled
+
 # disable ktlint_standard_function-naming rule for @Composable functions
 ktlint_function_naming_ignore_when_annotated_with = Composable
 

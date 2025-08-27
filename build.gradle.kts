@@ -2,11 +2,10 @@ import com.dropbox.gradle.plugins.dependencyguard.DependencyGuardPlugin
 import com.dropbox.gradle.plugins.dependencyguard.DependencyGuardPluginExtension
 import com.github.benmanes.gradle.versions.VersionsPlugin
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
+import dev.sdkforge.buildlogic.KtLintPlugin
 import kotlinx.kover.gradle.plugin.KoverGradlePlugin
 import org.jetbrains.dokka.gradle.DokkaExtension
 import org.jetbrains.dokka.gradle.DokkaPlugin
-import org.jlleitschuh.gradle.ktlint.KtlintPlugin
-import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
 
 plugins {
     // :app
@@ -17,6 +16,7 @@ plugins {
     alias(libs.plugins.androidLibrary).apply(false)
     alias(libs.plugins.binaryCompatibilityValidator).apply(false)
     alias(libs.plugins.dokka).apply(false)
+    alias(libs.plugins.build.logic.ktlint)
     alias(libs.plugins.build.logic.library.kmp).apply(false)
     alias(libs.plugins.build.logic.library.android).apply(false)
     alias(libs.plugins.build.logic.library.publishing).apply(false)
@@ -27,7 +27,6 @@ plugins {
     alias(libs.plugins.dependency.guard).apply(false)
     // applied to all modules
     alias(libs.plugins.kover)
-    alias(libs.plugins.ktlint)
     alias(libs.plugins.versions)
 }
 
@@ -52,13 +51,7 @@ allprojects {
 }
 
 subprojects {
-    apply<KtlintPlugin>()
-
-    ktlint {
-        reporters {
-            reporter(ReporterType.HTML)
-        }
-    }
+    apply<KtLintPlugin>()
 
     // published code configuration
     if (name.startsWith("shared")) {
@@ -72,13 +65,6 @@ subprojects {
 
         configure<DokkaExtension> {
             // TODO: add shared config
-        }
-    }
-
-    // apply only to forked projects
-    if (rootProject.name != "SDKForgeTemplate") {
-        dependencies {
-            ktlint(project(":internal-ktlint"))
         }
     }
 }

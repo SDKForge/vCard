@@ -47,5 +47,9 @@ gradlePlugin {
             id = "dev.sdkforge.buildlogic.root"
             implementationClass = "dev.sdkforge.buildlogic.RootProjectPlugin"
         }
+        register("dev.sdkforge.buildlogic.ktlint") {
+            id = "dev.sdkforge.buildlogic.ktlint"
+            implementationClass = "dev.sdkforge.buildlogic.KtLintPlugin"
+        }
     }
 }

@@ -41,6 +41,7 @@ class KtLintPlugin : Plugin<Project> {
                     "src/**/*.kt",
                     "**.kts",
                     "!**/build/**",
+                    "!**/shared-template/build.gradle.kts",
                     "--editorconfig", "${rootDir.path}/.editorconfig",
                     "--reporter", "html,output=${reportFile.absolutePath}",
                 )
@@ -59,6 +60,7 @@ class KtLintPlugin : Plugin<Project> {
                     "src/**/*.kt",
                     "**.kts",
                     "!**/build/**",
+                    "!**/shared-template/build.gradle.kts",
                     "--editorconfig", "${rootDir.path}/.editorconfig",
                     "--reporter", "html,output=${reportFile.absolutePath}",
                 )

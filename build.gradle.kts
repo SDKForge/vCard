@@ -28,6 +28,8 @@ plugins {
     // applied to all modules
     alias(libs.plugins.kover)
     alias(libs.plugins.versions)
+    // benchmark
+    alias(libs.plugins.benchmark) apply false
 }
 
 apply(plugin = libs.plugins.build.logic.root.get().pluginId)

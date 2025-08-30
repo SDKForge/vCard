@@ -1,0 +1,100 @@
+name: Bug Report
+description: Create a report to help us improve
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
+        
+        Please provide as much detail as possible to help us understand and fix the issue.
+  - type: input
+    id: platform
+    attributes:
+      label: Platform
+      description: Which platform are you experiencing the issue on?
+      placeholder: "Android, iOS, or both"
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: SDK Version
+      description: What version of the SDK are you using?
+      placeholder: "e.g., 1.0.0"
+    validations:
+      required: true
+  - type: input
+    id: kotlin-version
+    attributes:
+      label: Kotlin Version
+      description: What version of Kotlin are you using?
+      placeholder: "e.g., 1.9.0"
+  - type: input
+    id: gradle-version
+    attributes:
+      label: Gradle Version
+      description: What version of Gradle are you using?
+      placeholder: "e.g., 8.0"
+  - type: textarea
+    id: description
+    attributes:
+      label: Bug Description
+      description: A clear description of what the bug is
+      placeholder: "Describe the bug..."
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to Reproduce
+      description: Steps to reproduce the behavior
+      placeholder: |
+        1. Go to '...'
+        2. Click on '....'
+        3. Scroll down to '....'
+        4. See error
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What you expected to happen
+      placeholder: "A clear description of what you expected to happen"
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+      description: What actually happened
+      placeholder: "A clear description of what actually happened"
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: Please share any relevant logs, stack traces, or error messages
+      placeholder: "Paste logs here..."
+      render: shell
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      description: How severe is this bug?
+      options:
+        - "Critical - App crashes or major functionality broken"
+        - "High - Important functionality affected"
+        - "Medium - Minor functionality affected"
+        - "Low - Cosmetic issue or minor inconvenience"
+    validations:
+      required: true
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Add any other context about the problem here
+      placeholder: "Screenshots, code snippets, or any other relevant information"

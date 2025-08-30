@@ -1,0 +1,111 @@
+name: Performance Issue
+description: Report performance problems or optimization opportunities
+title: "[Performance]: "
+labels: ["performance"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a performance issue!
+        
+        Please provide detailed information about the performance problem you're experiencing.
+  - type: input
+    id: platform
+    attributes:
+      label: Platform
+      description: Which platform are you experiencing performance issues on?
+      placeholder: "Android, iOS, or both"
+    validations:
+      required: true
+  - type: input
+    id: sdk-version
+    attributes:
+      label: SDK Version
+      description: What version of the SDK are you using?
+      placeholder: "e.g., 1.0.0"
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Performance Issue Description
+      description: Describe the performance problem you're experiencing
+      placeholder: "Describe the performance issue..."
+    validations:
+      required: true
+  - type: textarea
+    id: current-performance
+    attributes:
+      label: Current Performance
+      description: Describe the current performance characteristics
+      placeholder: |
+        - Response time: X ms
+        - Memory usage: X MB
+        - CPU usage: X%
+        - Battery impact: High/Medium/Low
+    validations:
+      required: true
+  - type: textarea
+    id: expected-performance
+    attributes:
+      label: Expected Performance
+      description: What performance characteristics do you expect?
+      placeholder: |
+        - Response time: X ms
+        - Memory usage: X MB
+        - CPU usage: X%
+        - Battery impact: High/Medium/Low
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to Reproduce
+      description: Steps to reproduce the performance issue
+      placeholder: |
+        1. Load the app
+        2. Navigate to feature X
+        3. Perform action Y
+        4. Observe performance degradation
+    validations:
+      required: true
+  - type: textarea
+    id: profiling-data
+    attributes:
+      label: Profiling Data
+      description: Share any profiling data, benchmarks, or performance metrics
+      placeholder: |
+        - CPU profiler output
+        - Memory profiler data
+        - Benchmark results
+        - Performance monitoring logs
+      render: shell
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Performance Impact Severity
+      description: How severe is the performance impact?
+      options:
+        - "Critical - App is unusable or crashes"
+        - "High - Significant performance degradation"
+        - "Medium - Noticeable performance issues"
+        - "Low - Minor performance concerns"
+    validations:
+      required: true
+  - type: textarea
+    id: device-info
+    attributes:
+      label: Device Information
+      description: Provide device specifications and environment details
+      placeholder: |
+        - Device model
+        - OS version
+        - Available memory
+        - CPU specifications
+        - Network conditions (if relevant)
+  - type: textarea
+    id: optimization-suggestions
+    attributes:
+      label: Optimization Suggestions
+      description: Do you have any ideas for optimization?
+      placeholder: "Optional: Share any thoughts on potential optimizations..."

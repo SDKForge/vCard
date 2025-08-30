@@ -1,197 +1,264 @@
 package dev.sdkforge.vcard.domain.property
 
 /**
- *    Purpose:  To specify the position or job of the object the vCard
- *       represents.
+ * Title property for vCard objects.
  *
- *    Value type:  A single text value.
+ * This property specifies the position or job of the object the vCard represents.
+ * It is based on the X.520 Title attribute and describes the professional title
+ * or job position of the contact.
  *
- *    Cardinality:  *
+ * ## Purpose
  *
- *    Special notes:  This property is based on the X.520 Title attribute
- *       [CCITT.X520.1988].
+ * To specify the position or job of the object the vCard represents.
  *
- *    ABNF:
+ * ## Value Type
  *
- *      TITLE-param = "VALUE=text" / language-param / pid-param
- *                  / pref-param / altid-param / type-param / any-param
- *      TITLE-value = text
+ * A single text value.
  *
- *    Example:
+ * ## Cardinality
  *
- *            TITLE:Research Scientist
+ * * (One or more instances per vCard MAY be present)
+ *
+ * ## Special Notes
+ *
+ * This property is based on the X.520 Title attribute.
+ *
+ * ## Example
+ *
+ * ```
+ * TITLE:Research Scientist
+ * ```
+ *
+ * @see dev.sdkforge.vcard.domain.property.Property.Organizational
  */
 object Title : Property.Organizational {
+    /**
+     * The property key for title.
+     *
+     * @return "TITLE"
+     */
     override val key: String get() = "TITLE"
 }
 
 /**
- *    Purpose:  To specify the function or part played in a particular
- *       situation by the object the vCard represents.
+ * Role property for vCard objects.
  *
- *    Value type:  A single text value.
+ * This property specifies the function or part played in a particular situation
+ * by the object the vCard represents. It is based on the X.520 Business Category
+ * explanatory attribute and describes the role or function rather than the job title.
  *
- *    Cardinality:  *
-
- *    Special notes:  This property is based on the X.520 Business Category
- *       explanatory attribute [CCITT.X520.1988].  This property is
- *       included as an organizational type to avoid confusion with the
- *       semantics of the TITLE property and incorrect usage of that
- *       property when the semantics of this property is intended.
+ * ## Purpose
  *
- *    ABNF:
+ * To specify the function or part played in a particular situation by the object
+ * the vCard represents.
  *
- *      ROLE-param = "VALUE=text" / language-param / pid-param / pref-param
- *                 / type-param / altid-param / any-param
- *      ROLE-value = text
+ * ## Value Type
  *
- *    Example:
+ * A single text value.
  *
- *            ROLE:Project Leader
+ * ## Cardinality
+ *
+ * * (One or more instances per vCard MAY be present)
+ *
+ * ## Special Notes
+ *
+ * This property is based on the X.520 Business Category explanatory attribute.
+ * This property is included as an organizational type to avoid confusion with
+ * the semantics of the TITLE property and incorrect usage of that property when
+ * the semantics of this property is intended.
+ *
+ * ## Example
+ *
+ * ```
+ * ROLE:Project Leader
+ * ```
+ *
+ * @see dev.sdkforge.vcard.domain.property.Property.Organizational
  */
 object Role : Property.Organizational {
+    /**
+     * The property key for role.
+     *
+     * @return "ROLE"
+     */
     override val key: String get() = "ROLE"
 }
 
 /**
- *    Purpose:  To specify a graphic image of a logo associated with the
- *       object the vCard represents.
+ * Logo property for vCard objects.
  *
- *    Value type:  A single URI.
+ * This property specifies a graphic image of a logo associated with the object
+ * the vCard represents. It can contain a URI pointing to an image file or
+ * embedded base64-encoded image data.
  *
- *    Cardinality:  *
+ * ## Purpose
  *
- *    ABNF:
+ * To specify a graphic image of a logo associated with the object the vCard represents.
  *
- *      LOGO-param = "VALUE=uri" / language-param / pid-param / pref-param
- *                 / type-param / mediatype-param / altid-param / any-param
- *      LOGO-value = URI
+ * ## Value Type
  *
- *    Examples:
+ * A single URI.
  *
- *      LOGO:http://www.example.com/pub/logos/abccorp.jpg
+ * ## Cardinality
  *
- *      LOGO:data:image/jpeg;base64,MIICajCCAdOgAwIBAgICBEUwDQYJKoZIhvc
- *       AQEEBQAwdzELMAkGA1UEBhMCVVMxLDAqBgNVBAoTI05ldHNjYXBlIENvbW11bm
- *       ljYXRpb25zIENvcnBvcmF0aW9uMRwwGgYDVQQLExNJbmZvcm1hdGlvbiBTeXN0
- *       <...the remainder of base64-encoded data...>
+ * * (One or more instances per vCard MAY be present)
+ *
+ * ## Examples
+ *
+ * ```
+ * LOGO:http://www.example.com/pub/logos/abccorp.jpg
+ * LOGO:data:image/jpeg;base64,MIICajCCAdOgAwIBAgICBEUwDQYJKoZIhvc...
+ * ```
+ *
+ * @see dev.sdkforge.vcard.domain.property.Property.Organizational
  */
 object Logo : Property.Organizational {
+    /**
+     * The property key for logo.
+     *
+     * @return "LOGO"
+     */
     override val key: String get() = "LOGO"
 }
 
 /**
- *    Purpose:  To specify the organizational name and units associated
- *       with the vCard.
+ * Organizational name property for vCard objects.
  *
- *    Value type:  A single structured text value consisting of components
- *       separated by the SEMICOLON character (U+003B).
-
- *    Cardinality:  *
+ * This property specifies the organizational name and units associated with the vCard.
+ * The property value is a structured type consisting of the organization name,
+ * followed by zero or more levels of organizational unit names.
  *
- *    Special notes:  The property is based on the X.520 Organization Name
- *       and Organization Unit attributes [CCITT.X520.1988].  The property
- *       value is a structured type consisting of the organization name,
- *       followed by zero or more levels of organizational unit names.
+ * ## Purpose
  *
- *       The SORT-AS parameter MAY be applied to this property.
+ * To specify the organizational name and units associated with the vCard.
  *
- *    ABNF:
+ * ## Value Type
  *
- *      ORG-param = "VALUE=text" / sort-as-param / language-param
- *                / pid-param / pref-param / altid-param / type-param
- *                / any-param
- *      ORG-value = component *(";" component)
+ * A single structured text value consisting of components separated by the
+ * SEMICOLON character (U+003B).
  *
- *    Example: A property value consisting of an organizational name,
- *    organizational unit #1 name, and organizational unit #2 name.
+ * ## Cardinality
  *
- *            ORG:ABC\, Inc.;North American Division;Marketing
+ * * (One or more instances per vCard MAY be present)
+ *
+ * ## Special Notes
+ *
+ * The property is based on the X.520 Organization Name and Organization Unit
+ * attributes. The property value is a structured type consisting of the organization
+ * name, followed by zero or more levels of organizational unit names.
+ *
+ * The SORT-AS parameter MAY be applied to this property.
+ *
+ * ## Example
+ *
+ * A property value consisting of an organizational name, organizational unit #1 name,
+ * and organizational unit #2 name:
+ *
+ * ```
+ * ORG:ABC\, Inc.;North American Division;Marketing
+ * ```
+ *
+ * @see dev.sdkforge.vcard.domain.property.Property.Organizational
  */
 object OrganizationalName : Property.Organizational {
+    /**
+     * The property key for organizational name.
+     *
+     * @return "ORG"
+     */
     override val key: String get() = "ORG"
 }
 
 /**
- *    Purpose:  To specify the organizational name and units associated
- *       with the vCard.
+ * Member property for vCard objects.
  *
- *    Value type:  A single structured text value consisting of components
- *       separated by the SEMICOLON character (U+003B).
-
- *    Cardinality:  *
+ * This property includes a member in the group this vCard represents. It MAY refer
+ * to something other than a vCard object. For example, an email distribution list
+ * could employ the "mailto" URI scheme for efficiency.
  *
- *    Special notes:  The property is based on the X.520 Organization Name
- *       and Organization Unit attributes [CCITT.X520.1988].  The property
- *       value is a structured type consisting of the organization name,
- *       followed by zero or more levels of organizational unit names.
+ * ## Purpose
  *
- *       The SORT-AS parameter MAY be applied to this property.
+ * To include a member in the group this vCard represents.
  *
- *    ABNF:
+ * ## Value Type
  *
- *      ORG-param = "VALUE=text" / sort-as-param / language-param
- *                / pid-param / pref-param / altid-param / type-param
- *                / any-param
- *      ORG-value = component *(";" component)
+ * A single URI. It MAY refer to something other than a vCard object.
  *
- *    Example: A property value consisting of an organizational name,
- *    organizational unit #1 name, and organizational unit #2 name.
+ * ## Cardinality
  *
- *            ORG:ABC\, Inc.;North American Division;Marketing
+ * * (One or more instances per vCard MAY be present)
+ *
+ * ## Special Notes
+ *
+ * This property MUST NOT be present unless the value of the KIND property is "group".
+ *
+ * ## Examples
+ *
+ * ```
+ * BEGIN:VCARD
+ * VERSION:4.0
+ * KIND:group
+ * FN:The Doe family
+ * MEMBER:urn:uuid:03a0e51f-d1aa-4385-8a53-e29025acd8af
+ * MEMBER:urn:uuid:b8767877-b4a1-4c70-9acc-505d3819e519
+ * END:VCARD
+ * ```
+ *
+ * ```
+ * BEGIN:VCARD
+ * VERSION:4.0
+ * KIND:group
+ * FN:Funky distribution list
+ * MEMBER:mailto:subscriber1@example.com
+ * MEMBER:xmpp:subscriber2@example.com
+ * MEMBER:sip:subscriber3@example.com
+ * MEMBER:tel:+1-418-555-5555
+ * END:VCARD
+ * ```
+ *
+ * @see dev.sdkforge.vcard.domain.property.Property.Organizational
  */
 object Member : Property.Organizational {
+    /**
+     * The property key for member.
+     *
+     * @return "MEMBER"
+     */
     override val key: String get() = "MEMBER"
 }
 
 /**
- *    Purpose:  To include a member in the group this vCard represents.
+ * Related property for vCard objects.
  *
- *    Value type:  A single URI.  It MAY refer to something other than a
- *       vCard object.  For example, an email distribution list could
- *       employ the "mailto" URI scheme [RFC6068] for efficiency.
+ * This property specifies related contacts or entities associated with the vCard.
+ * It can be used to establish relationships between different vCard objects or
+ * other types of entities.
  *
- *    Cardinality:  *
+ * ## Purpose
  *
- *    Special notes:  This property MUST NOT be present unless the value of
- *       the KIND property is "group".
+ * To specify related contacts or entities associated with the vCard.
  *
- *    ABNF:
+ * ## Value Type
  *
- *      MEMBER-param = "VALUE=uri" / pid-param / pref-param / altid-param
- *                   / mediatype-param / any-param
- *      MEMBER-value = URI
-
- *    Examples:
+ * A single URI.
  *
- *      BEGIN:VCARD
- *      VERSION:4.0
- *      KIND:group
- *      FN:The Doe family
- *      MEMBER:urn:uuid:03a0e51f-d1aa-4385-8a53-e29025acd8af
- *      MEMBER:urn:uuid:b8767877-b4a1-4c70-9acc-505d3819e519
- *      END:VCARD
- *      BEGIN:VCARD
- *      VERSION:4.0
- *      FN:John Doe
- *      UID:urn:uuid:03a0e51f-d1aa-4385-8a53-e29025acd8af
- *      END:VCARD
- *      BEGIN:VCARD
- *      VERSION:4.0
- *      FN:Jane Doe
- *      UID:urn:uuid:b8767877-b4a1-4c70-9acc-505d3819e519
- *      END:VCARD
+ * ## Cardinality
  *
- *      BEGIN:VCARD
- *      VERSION:4.0
- *      KIND:group
- *      FN:Funky distribution list
- *      MEMBER:mailto:subscriber1@example.com
- *      MEMBER:xmpp:subscriber2@example.com
- *      MEMBER:sip:subscriber3@example.com
- *      MEMBER:tel:+1-418-555-5555
- *      END:VCARD
+ * * (One or more instances per vCard MAY be present)
+ *
+ * ## Example
+ *
+ * ```
+ * RELATED:urn:uuid:03a0e51f-d1aa-4385-8a53-e29025acd8af
+ * ```
+ *
+ * @see dev.sdkforge.vcard.domain.property.Property.Organizational
  */
 object Related : Property.Organizational {
+    /**
+     * The property key for related.
+     *
+     * @return "RELATED"
+     */
     override val key: String get() = "RELATED"
 }

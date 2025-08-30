@@ -3,38 +3,40 @@
 package dev.sdkforge.vcard.domain.property
 
 /**
- *    Purpose:  To specify a public key or authentication certificate
- *       associated with the object that the vCard represents.
+ * Key property for vCard objects.
  *
- *    Value type:  A single URI.  It can also be reset to a text value.
+ * This property specifies a public key or authentication certificate associated
+ * with the object that the vCard represents. It can contain a URI pointing to
+ * a key file or embedded base64-encoded key data.
  *
- *    Cardinality:  *
-
- *    ABNF:
+ * ## Purpose
  *
- *      KEY-param = KEY-uri-param / KEY-text-param
- *      KEY-value = KEY-uri-value / KEY-text-value
- *        ; Value and parameter MUST match.
+ * To specify a public key or authentication certificate associated with the
+ * object that the vCard represents.
  *
- *      KEY-uri-param = "VALUE=uri" / mediatype-param
- *      KEY-uri-value = URI
+ * ## Value Type
  *
- *      KEY-text-param = "VALUE=text"
- *      KEY-text-value = text
+ * A single URI. It can also be reset to a text value.
  *
- *      KEY-param =/ altid-param / pid-param / pref-param / type-param
- *                 / any-param
+ * ## Cardinality
  *
- *    Examples:
+ * * (One or more instances per vCard MAY be present)
  *
- *      KEY:http://www.example.com/keys/jdoe.cer
+ * ## Examples
  *
- *      KEY;MEDIATYPE=application/pgp-keys:ftp://example.com/keys/jdoe
+ * ```
+ * KEY:http://www.example.com/keys/jdoe.cer
+ * KEY;MEDIATYPE=application/pgp-keys:ftp://example.com/keys/jdoe
+ * KEY:data:application/pgp-keys;base64,MIICajCCAdOgAwIBAgICBEUwDQYJKoZIhvcNAQEEBQAwdzELMAkGA1UEBhMCVVMxLDAqBgNVBAoTI05l...
+ * ```
  *
- *      KEY:data:application/pgp-keys;base64,MIICajCCAdOgAwIBAgICBE
- *       UwDQYJKoZIhvcNAQEEBQAwdzELMAkGA1UEBhMCVVMxLDAqBgNVBAoTI05l
- *       <... remainder of base64-encoded data ...>
+ * @see dev.sdkforge.vcard.domain.property.Property.Security
  */
 object Key : Property.Security {
+    /**
+     * The property key for key.
+     *
+     * @return "KEY"
+     */
     override val key: String get() = "KEY"
 }

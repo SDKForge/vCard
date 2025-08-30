@@ -42,7 +42,33 @@ import dev.sdkforge.vcard.domain.property.URL
 import dev.sdkforge.vcard.domain.property.Version
 import dev.sdkforge.vcard.domain.property.Xml
 
+/**
+ * Validates vCard property cardinality according to RFC 6350 specification.
+ *
+ * This object provides validation functions to ensure that vCard properties
+ * conform to the cardinality rules defined in RFC 6350. It maps each property
+ * to its required cardinality and validates that the actual number of instances
+ * matches the specification.
+ *
+ * ## Usage
+ *
+ * ```kotlin
+ * // Validate a property's cardinality
+ * val isValid = CardinalityValidation.isValid(FormattedName, listOf("John Doe"))
+ * ```
+ *
+ * @see dev.sdkforge.vcard.data.validation.Cardinality
+ */
 internal object CardinalityValidation {
+    /**
+     * Gets the cardinality requirement for a specific property.
+     *
+     * This extension property maps each vCard property to its cardinality
+     * requirement as defined in RFC 6350. The cardinality determines how many
+     * instances of a property are allowed or required in a vCard.
+     *
+     * @return The [Cardinality] requirement for this property
+     */
     private val Property.cardinality: Cardinality
         get() = when (this) {
             Begin -> Cardinality.ONE_REQUIRED
@@ -93,6 +119,27 @@ internal object CardinalityValidation {
             CalendarUri -> Cardinality.MULTIPLE_OPTIONAL
         }
 
+    /**
+     * Validates that a property's cardinality matches the RFC 6350 specification.
+     *
+     * This function checks whether the number of instances of a property
+     * conforms to the cardinality rules defined in RFC 6350. It throws an
+     * [IllegalArgumentException] if the cardinality is violated.
+     *
+     * ## Cardinality Rules
+     *
+     * - **ONE_REQUIRED**: Exactly one instance must be present
+     * - **ONE_OPTIONAL**: Zero or one instance may be present
+     * - **MULTIPLE_REQUIRED**: One or more instances must be present
+     * - **MULTIPLE_OPTIONAL**: Zero or more instances may be present
+     *
+     * @param property The property to validate
+     * @param input The list of property values to validate
+     * @return `true` if the cardinality is valid
+     * @throws IllegalArgumentException if the cardinality is violated
+     *
+     * @see dev.sdkforge.vcard.data.validation.Cardinality
+     */
     internal fun isValid(property: Property, input: List<*>): Boolean = when (property.cardinality) {
         Cardinality.ONE_REQUIRED -> input.size == 1
         Cardinality.ONE_OPTIONAL -> input.size <= 1

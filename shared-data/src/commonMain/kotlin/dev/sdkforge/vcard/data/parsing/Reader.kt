@@ -56,6 +56,31 @@ import okio.FileSystem
 import okio.Path
 import okio.SYSTEM
 
+/**
+ * Parses a vCard from a string containing vCard data.
+ *
+ * This function parses vCard content from a string according to RFC 6350 specification.
+ * It processes the content line by line, mapping each line to the appropriate property
+ * and creating a [VCard] object.
+ *
+ * ## Format
+ *
+ * The string should contain vCard data in the standard format:
+ * ```
+ * BEGIN:VCARD
+ * VERSION:4.0
+ * FN:John Doe
+ * EMAIL:john@example.com
+ * END:VCARD
+ * ```
+ *
+ * @param string The vCard content as a string
+ * @return A [VCard] object representing the parsed data
+ * @throws IllegalArgumentException if the vCard data is invalid or missing required properties
+ *
+ * @see dev.sdkforge.vcard.domain.VCard
+ * @see dev.sdkforge.vcard.data.VCardV4
+ */
 fun readVCard(string: String): VCard = VCardV4(
     properties = buildMap {
         for (line in string.split('\n')) {
@@ -67,6 +92,32 @@ fun readVCard(string: String): VCard = VCardV4(
     },
 )
 
+/**
+ * Parses a vCard from a file path.
+ *
+ * This function reads vCard content from a file and parses it according to RFC 6350 specification.
+ * It uses the Okio FileSystem to read the file efficiently and processes the content
+ * line by line.
+ *
+ * ## File Format
+ *
+ * The file should contain vCard data in the standard format:
+ * ```
+ * BEGIN:VCARD
+ * VERSION:4.0
+ * FN:John Doe
+ * EMAIL:john@example.com
+ * END:VCARD
+ * ```
+ *
+ * @param path The file path to read the vCard from
+ * @return A [VCard] object representing the parsed data
+ * @throws IllegalArgumentException if the vCard data is invalid or missing required properties
+ * @throws IOException if the file cannot be read
+ *
+ * @see dev.sdkforge.vcard.domain.VCard
+ * @see dev.sdkforge.vcard.data.VCardV4
+ */
 fun readVCard(path: Path): VCard = VCardV4(
     properties = buildMap {
         FileSystem.SYSTEM.read(path) {
@@ -83,6 +134,16 @@ fun readVCard(path: Path): VCard = VCardV4(
     },
 )
 
+/**
+ * Maps a single line of vCard data to a property and value pair.
+ *
+ * This internal function parses a single line of vCard content and attempts to
+ * map it to a known property. It splits the line on ":" and ";" to separate
+ * the property key from the value.
+ *
+ * @param line A single line of vCard content
+ * @return A pair containing the property (or null if not recognized) and the value
+ */
 private fun mapLineToData(line: String): Pair<Property?, String> {
     val parts = line.split(":", ";", limit = 2)
     val key = parts[0]
@@ -90,16 +151,59 @@ private fun mapLineToData(line: String): Pair<Property?, String> {
     return PROPERTY_VALUES.firstOrNull { property -> property.key == key } to value
 }
 
+// Property value sets organized by category
+
+/**
+ * Set of general properties defined in RFC 6350.
+ */
 internal val GENERAL_VALUES: Set<General> = setOf(Begin, End, Source, Kind, Xml)
+
+/**
+ * Set of identification properties defined in RFC 6350.
+ */
 internal val IDENTIFICATION_VALUES: Set<Identification> = setOf(FormattedName, Name, Nickname, Photo, Birthday, Anniversary, Gender)
+
+/**
+ * Set of delivery addressing properties defined in RFC 6350.
+ */
 internal val DELIVERY_ADDRESSING_VALUES: Set<DeliveryAddressing> = setOf(Address)
+
+/**
+ * Set of communications properties defined in RFC 6350.
+ */
 internal val COMMUNICATIONS_VALUES: Set<Communications> = setOf(Telephone, Email, IMPP, Language)
+
+/**
+ * Set of geographical properties defined in RFC 6350.
+ */
 internal val GEOGRAPHICAL_VALUES: Set<Geographical> = setOf(TimeZone, Geo)
+
+/**
+ * Set of organizational properties defined in RFC 6350.
+ */
 internal val ORGANIZATIONAL_VALUES: Set<Organizational> = setOf(Title, Role, Logo, OrganizationalName, Member, Related)
+
+/**
+ * Set of explanatory properties defined in RFC 6350.
+ */
 internal val EXPLANATORY_VALUES: Set<Explanatory> = setOf(Categories, Note, ProductId, Revision, Sound, UID, ClientPIDMap, URL, Version)
+
+/**
+ * Set of security properties defined in RFC 6350.
+ */
 internal val SECURITY_VALUES: Set<Security> = setOf(Key)
+
+/**
+ * Set of calendar properties defined in RFC 6350.
+ */
 internal val CALENDAR_VALUES: Set<Calendar> = setOf(BusyCalendarUri, CalendarUserUri, CalendarUri)
 
+/**
+ * Complete set of all supported vCard properties.
+ *
+ * This set contains all property types supported by the parser, organized
+ * by their respective categories as defined in RFC 6350.
+ */
 internal val PROPERTY_VALUES: Set<Property> = buildSet {
     this += GENERAL_VALUES
     this += IDENTIFICATION_VALUES

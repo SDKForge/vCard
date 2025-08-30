@@ -1,70 +1,95 @@
 package dev.sdkforge.vcard.domain.property
 
 /**
- *    Purpose:  To specify information related to the time zone of the
- *       object the vCard represents.
-
- *    Value type:  The default is a single text value.  It can also be
- *       reset to a single URI or utc-offset value.
+ * Time zone property for vCard objects.
  *
- *    Cardinality:  *
+ * This property specifies information related to the time zone of the object
+ * the vCard represents. It can contain text values, URIs, or UTC offset values.
  *
- *    Special notes:  It is expected that names from the public-domain
- *       Olson database [TZ-DB] will be used, but this is not a
- *       restriction.  See also [IANA-TZ].
+ * ## Purpose
  *
- *       Efforts are currently being directed at creating a standard URI
- *       scheme for expressing time zone information.  Usage of such a
- *       scheme would ensure a high level of interoperability between
- *       implementations that support it.
+ * To specify information related to the time zone of the object the vCard represents.
  *
- *       Note that utc-offset values SHOULD NOT be used because the UTC
- *       offset varies with time -- not just because of the usual daylight
- *       saving time shifts that occur in may regions, but often entire
- *       regions will "re-base" their overall offset.  The actual offset
- *       may be +/- 1 hour (or perhaps a little more) than the one given.
+ * ## Value Type
  *
- *    ABNF:
+ * The default is a single text value. It can also be reset to a single URI or
+ * utc-offset value.
  *
- *      TZ-param = "VALUE=" ("text" / "uri" / "utc-offset")
- *      TZ-value = text / URI / utc-offset
- *        ; Value and parameter MUST match.
+ * ## Cardinality
  *
- *      TZ-param =/ altid-param / pid-param / pref-param / type-param
- *                / mediatype-param / any-param
+ * * (One or more instances per vCard MAY be present)
  *
- *    Examples:
+ * ## Special Notes
  *
- *      TZ:Raleigh/North America
+ * It is expected that names from the public-domain Olson database will be used,
+ * but this is not a restriction.
  *
- *      TZ;VALUE=utc-offset:-0500
- *        ; Note: utc-offset format is NOT RECOMMENDED.
+ * Efforts are currently being directed at creating a standard URI scheme for
+ * expressing time zone information. Usage of such a scheme would ensure a high
+ * level of interoperability between implementations that support it.
+ *
+ * Note that utc-offset values SHOULD NOT be used because the UTC offset varies
+ * with time -- not just because of the usual daylight saving time shifts that
+ * occur in many regions, but often entire regions will "re-base" their overall
+ * offset. The actual offset may be +/- 1 hour (or perhaps a little more) than
+ * the one given.
+ *
+ * ## Examples
+ *
+ * ```
+ * TZ:Raleigh/North America
+ * TZ;VALUE=utc-offset:-0500
+ * ```
+ *
+ * @see dev.sdkforge.vcard.domain.property.Property.Geographical
  */
 object TimeZone : Property.Geographical {
+    /**
+     * The property key for time zone.
+     *
+     * @return "TZ"
+     */
     override val key: String get() = "TZ"
 }
 
 /**
- *    Purpose:  To specify information related to the global positioning of
- *       the object the vCard represents.
+ * Geographic position property for vCard objects.
  *
- *    Value type:  A single URI.
+ * This property specifies information related to the global positioning of
+ * the object the vCard represents. The "geo" URI scheme is particularly well
+ * suited for this property.
  *
- *    Cardinality:  *
+ * ## Purpose
  *
- *    Special notes:  The "geo" URI scheme [RFC5870] is particularly well
- *       suited for this property, but other schemes MAY be used.
-
- *    ABNF:
+ * To specify information related to the global positioning of the object
+ * the vCard represents.
  *
- *      GEO-param = "VALUE=uri" / pid-param / pref-param / type-param
- *                / mediatype-param / altid-param / any-param
- *      GEO-value = URI
+ * ## Value Type
  *
- *    Example:
+ * A single URI.
  *
- *            GEO:geo:37.386013,-122.082932
+ * ## Cardinality
+ *
+ * * (One or more instances per vCard MAY be present)
+ *
+ * ## Special Notes
+ *
+ * The "geo" URI scheme (RFC 5870) is particularly well suited for this property,
+ * but other schemes MAY be used.
+ *
+ * ## Example
+ *
+ * ```
+ * GEO:geo:37.386013,-122.082932
+ * ```
+ *
+ * @see dev.sdkforge.vcard.domain.property.Property.Geographical
  */
 object Geo : Property.Geographical {
+    /**
+     * The property key for geographic position.
+     *
+     * @return "GEO"
+     */
     override val key: String get() = "GEO"
 }

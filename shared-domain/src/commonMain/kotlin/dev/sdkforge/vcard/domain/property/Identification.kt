@@ -1,222 +1,291 @@
 package dev.sdkforge.vcard.domain.property
 
 /**
- *    Purpose:  To specify the formatted text corresponding to the name of
- *       the object the vCard represents.
+ * Formatted name property for vCard objects.
  *
- *    Value type:  A single text value.
+ * This property specifies the formatted text corresponding to the name of
+ * the object the vCard represents. It is based on the semantics of the X.520
+ * Common Name attribute and MUST be present in the vCard object.
  *
- *    Cardinality:  1*
+ * ## Purpose
  *
- *    Special notes:  This property is based on the semantics of the X.520
- *       Common Name attribute [CCITT.X520.1988].  The property MUST be
- *       present in the vCard object.
+ * To specify the formatted text corresponding to the name of the object
+ * the vCard represents.
  *
- *    ABNF:
+ * ## Value Type
  *
- *      FN-param = "VALUE=text" / type-param / language-param / altid-param
- *               / pid-param / pref-param / any-param
- *      FN-value = text
+ * A single text value.
  *
- *    Example:
+ * ## Cardinality
  *
- *          FN:Mr. John Q. Public\, Esq.
+ * 1* (One or more instances per vCard MUST be present)
+ *
+ * ## Special Notes
+ *
+ * This property is based on the semantics of the X.520 Common Name attribute.
+ * The property MUST be present in the vCard object.
+ *
+ * ## Example
+ *
+ * ```
+ * FN:Mr. John Q. Public\, Esq.
+ * ```
+ *
+ * @see dev.sdkforge.vcard.domain.property.Property.Identification
  */
 object FormattedName : Property.Identification {
+    /**
+     * The property key for formatted name.
+     *
+     * @return "FN"
+     */
     override val key: String get() = "FN"
 }
 
 /**
- *    Purpose:  To specify the components of the name of the object the
- *       vCard represents.
+ * Structured name property for vCard objects.
  *
- *    Value type:  A single structured text value.  Each component can have
- *       multiple values.
+ * This property specifies the components of the name of the object the
+ * vCard represents. The structured property value corresponds to Family Names,
+ * Given Names, Additional Names, Honorific Prefixes, and Honorific Suffixes.
  *
- *    Cardinality:  *1
+ * ## Purpose
  *
- *    Special note:  The structured property value corresponds, in
- *       sequence, to the Family Names (also known as surnames), Given
- *       Names, Additional Names, Honorific Prefixes, and Honorific
- *       Suffixes.  The text components are separated by the SEMICOLON
- *       character (U+003B).  Individual text components can include
- *       multiple text values separated by the COMMA character (U+002C).
- *       This property is based on the semantics of the X.520 individual
- *       name attributes [CCITT.X520.1988].  The property SHOULD be present
- *       in the vCard object when the name of the object the vCard
- *       represents follows the X.520 model.
+ * To specify the components of the name of the object the vCard represents.
  *
- *       The SORT-AS parameter MAY be applied to this property.
+ * ## Value Type
  *
- *    ABNF:
+ * A single structured text value. Each component can have multiple values.
  *
- *      N-param = "VALUE=text" / sort-as-param / language-param
- *              / altid-param / any-param
- *      N-value = list-component 4(";" list-component)
+ * ## Cardinality
  *
- *    Examples:
+ * *1 (Exactly one instance per vCard MAY be present)
  *
- *              N:Public;John;Quinlan;Mr.;Esq.
+ * ## Special Notes
  *
- *              N:Stevenson;John;Philip,Paul;Dr.;Jr.,M.D.,A.C.P.
+ * The structured property value corresponds, in sequence, to the Family Names
+ * (also known as surnames), Given Names, Additional Names, Honorific Prefixes,
+ * and Honorific Suffixes. The text components are separated by the SEMICOLON
+ * character (U+003B). Individual text components can include multiple text values
+ * separated by the COMMA character (U+002C).
+ *
+ * ## Examples
+ *
+ * ```
+ * N:Public;John;Quinlan;Mr.;Esq.
+ * N:Stevenson;John;Philip,Paul;Dr.;Jr.,M.D.,A.C.P.
+ * ```
+ *
+ * @see dev.sdkforge.vcard.domain.property.Property.Identification
  */
 object Name : Property.Identification {
+    /**
+     * The property key for structured name.
+     *
+     * @return "N"
+     */
     override val key: String get() = "N"
 }
 
 /**
- *    Purpose:  To specify the text corresponding to the nickname of the
- *       object the vCard represents.
+ * Nickname property for vCard objects.
  *
- *    Value type:  One or more text values separated by a COMMA character
- *       (U+002C).
+ * This property specifies the text corresponding to the nickname of the
+ * object the vCard represents. The nickname is the descriptive name given
+ * instead of or in addition to the one belonging to the object.
  *
- *    Cardinality:  *
-
- *    Special note:  The nickname is the descriptive name given instead of
- *       or in addition to the one belonging to the object the vCard
- *       represents.  It can also be used to specify a familiar form of a
- *       proper name specified by the FN or N properties.
+ * ## Purpose
  *
- *    ABNF:
+ * To specify the text corresponding to the nickname of the object the vCard represents.
  *
- *      NICKNAME-param = "VALUE=text" / type-param / language-param
- *                     / altid-param / pid-param / pref-param / any-param
- *      NICKNAME-value = text-list
+ * ## Value Type
  *
- *    Examples:
+ * One or more text values separated by a COMMA character (U+002C).
  *
- *              NICKNAME:Robbie
+ * ## Cardinality
  *
- *              NICKNAME:Jim,Jimmie
+ * * (One or more instances per vCard MAY be present)
  *
- *              NICKNAME;TYPE=work:Boss
+ * ## Special Notes
+ *
+ * The nickname is the descriptive name given instead of or in addition to the one
+ * belonging to the object the vCard represents. It can also be used to specify a
+ * familiar form of a proper name specified by the FN or N properties.
+ *
+ * ## Examples
+ *
+ * ```
+ * NICKNAME:Robbie
+ * NICKNAME:Jim,Jimmie
+ * NICKNAME;TYPE=work:Boss
+ * ```
+ *
+ * @see dev.sdkforge.vcard.domain.property.Property.Identification
  */
 object Nickname : Property.Identification {
+    /**
+     * The property key for nickname.
+     *
+     * @return "NICKNAME"
+     */
     override val key: String get() = "NICKNAME"
 }
 
 /**
- *    Purpose:  To specify an image or photograph information that
- *       annotates some aspect of the object the vCard represents.
+ * Photo property for vCard objects.
  *
- *    Value type:  A single URI.
+ * This property specifies an image or photograph information that annotates
+ * some aspect of the object the vCard represents.
  *
- *    Cardinality:  *
+ * ## Purpose
  *
- *    ABNF:
+ * To specify an image or photograph information that annotates some aspect
+ * of the object the vCard represents.
  *
- *      PHOTO-param = "VALUE=uri" / altid-param / type-param
- *                  / mediatype-param / pref-param / pid-param / any-param
- *      PHOTO-value = URI
+ * ## Value Type
  *
- *    Examples:
+ * A single URI.
  *
- *        PHOTO:http://www.example.com/pub/photos/jqpublic.gif
+ * ## Cardinality
  *
- *        PHOTO:data:image/jpeg;base64,MIICajCCAdOgAwIBAgICBEUwDQYJKoZIhv
- *         AQEEBQAwdzELMAkGA1UEBhMCVVMxLDAqBgNVBAoTI05ldHNjYXBlIENvbW11bm
- *         ljYXRpb25zIENvcnBvcmF0aW9uMRwwGgYDVQQLExNJbmZvcm1hdGlvbiBTeXN0
- *         <...remainder of base64-encoded data...>
+ * * (One or more instances per vCard MAY be present)
+ *
+ * ## Examples
+ *
+ * ```
+ * PHOTO:http://www.example.com/pub/photos/jqpublic.gif
+ * PHOTO:data:image/jpeg;base64,MIICajCCAdOgAwIBAgICBEUwDQYJKoZIhv...
+ * ```
+ *
+ * @see dev.sdkforge.vcard.domain.property.Property.Identification
  */
 object Photo : Property.Identification {
+    /**
+     * The property key for photo.
+     *
+     * @return "PHOTO"
+     */
     override val key: String get() = "PHOTO"
 }
 
 /**
- *    Purpose:  To specify the birth date of the object the vCard
- *       represents.
-
- *    Value type:  The default is a single date-and-or-time value.  It can
- *       also be reset to a single text value.
+ * Birthday property for vCard objects.
  *
- *    Cardinality:  *1
+ * This property specifies the birth date of the object the vCard represents.
  *
- *    ABNF:
+ * ## Purpose
  *
- *      BDAY-param = BDAY-param-date / BDAY-param-text
- *      BDAY-value = date-and-or-time / text
- *        ; Value and parameter MUST match.
+ * To specify the birth date of the object the vCard represents.
  *
- *      BDAY-param-date = "VALUE=date-and-or-time"
- *      BDAY-param-text = "VALUE=text" / language-param
+ * ## Value Type
  *
- *      BDAY-param =/ altid-param / calscale-param / any-param
- *        ; calscale-param can only be present when BDAY-value is
- *        ; date-and-or-time and actually contains a date or date-time.
+ * The default is a single date-and-or-time value. It can also be reset to a single text value.
  *
- *    Examples:
+ * ## Cardinality
  *
- *              BDAY:19960415
- *              BDAY:--0415
- *              BDAY;19531015T231000Z
- *              BDAY;VALUE=text:circa 1800
+ * *1 (Exactly one instance per vCard MAY be present)
+ *
+ * ## Examples
+ *
+ * ```
+ * BDAY:19960415
+ * BDAY:--0415
+ * BDAY;19531015T231000Z
+ * BDAY;VALUE=text:circa 1800
+ * ```
+ *
+ * @see dev.sdkforge.vcard.domain.property.Property.Identification
  */
 object Birthday : Property.Identification {
+    /**
+     * The property key for birthday.
+     *
+     * @return "BDAY"
+     */
     override val key: String get() = "BDAY"
 }
 
 /**
- *    Purpose:  The date of marriage, or equivalent, of the object the
- *       vCard represents.
+ * Anniversary property for vCard objects.
  *
- *    Value type:  The default is a single date-and-or-time value.  It can
- *       also be reset to a single text value.
+ * This property specifies the date of marriage, or equivalent, of the object
+ * the vCard represents.
  *
- *    Cardinality:  *1
+ * ## Purpose
  *
- *    ABNF:
+ * The date of marriage, or equivalent, of the object the vCard represents.
  *
- *      ANNIVERSARY-param = "VALUE=" ("date-and-or-time" / "text")
- *      ANNIVERSARY-value = date-and-or-time / text
- *        ; Value and parameter MUST match.
+ * ## Value Type
  *
- *      ANNIVERSARY-param =/ altid-param / calscale-param / any-param
- *        ; calscale-param can only be present when ANNIVERSARY-value is
- *        ; date-and-or-time and actually contains a date or date-time.
+ * The default is a single date-and-or-time value. It can also be reset to a single text value.
  *
- *    Examples:
+ * ## Cardinality
  *
- *              ANNIVERSARY:19960415
+ * *1 (Exactly one instance per vCard MAY be present)
+ *
+ * ## Examples
+ *
+ * ```
+ * ANNIVERSARY:19960415
+ * ```
+ *
+ * @see dev.sdkforge.vcard.domain.property.Property.Identification
  */
 object Anniversary : Property.Identification {
+    /**
+     * The property key for anniversary.
+     *
+     * @return "ANNIVERSARY"
+     */
     override val key: String get() = "ANNIVERSARY"
 }
 
 /**
- *    Purpose:  To specify the components of the sex and gender identity of
- *       the object the vCard represents.
+ * Gender property for vCard objects.
  *
- *    Value type:  A single structured value with two components.  Each
- *       component has a single text value.
+ * This property specifies the components of the sex and gender identity of
+ * the object the vCard represents.
  *
- *    Cardinality:  *1
+ * ## Purpose
  *
- *    Special notes:  The components correspond, in sequence, to the sex
- *       (biological), and gender identity.  Each component is optional.
+ * To specify the components of the sex and gender identity of the object the vCard represents.
  *
- *       Sex component:  A single letter.  M stands for "male", F stands
- *          for "female", O stands for "other", N stands for "none or not
- *          applicable", U stands for "unknown".
+ * ## Value Type
  *
- *       Gender identity component:  Free-form text.
+ * A single structured value with two components. Each component has a single text value.
  *
- *    ABNF:
+ * ## Cardinality
  *
- *                    GENDER-param = "VALUE=text" / any-param
- *                    GENDER-value = sex [";" text]
+ * *1 (Exactly one instance per vCard MAY be present)
  *
- *                    sex = "" / "M" / "F" / "O" / "N" / "U"
+ * ## Special Notes
  *
- *    Examples:
+ * The components correspond, in sequence, to the sex (biological), and gender identity.
+ * Each component is optional.
  *
- *      GENDER:M
- *      GENDER:F
- *      GENDER:M;Fellow
- *      GENDER:F;grrrl
- *      GENDER:O;intersex
- *      GENDER:;it's complicated
+ * Sex component: A single letter. M stands for "male", F stands for "female",
+ * O stands for "other", N stands for "none or not applicable", U stands for "unknown".
+ *
+ * Gender identity component: Free-form text.
+ *
+ * ## Examples
+ *
+ * ```
+ * GENDER:M
+ * GENDER:F
+ * GENDER:M;Fellow
+ * GENDER:F;grrrl
+ * GENDER:O;intersex
+ * GENDER:;it's complicated
+ * ```
+ *
+ * @see dev.sdkforge.vcard.domain.property.Property.Identification
  */
 object Gender : Property.Identification {
+    /**
+     * The property key for gender.
+     *
+     * @return "GENDER"
+     */
     override val key: String get() = "GENDER"
 }

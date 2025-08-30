@@ -10,6 +10,95 @@ import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+/**
+ * Gradle convention plugin for Android library projects in Kotlin Multiplatform builds.
+ *
+ * This plugin provides standardized configuration for Android library modules, including
+ * SDK configuration, Java compatibility, Kotlin compiler options, and comprehensive
+ * lint analysis. It's designed to work seamlessly with Kotlin Multiplatform projects.
+ *
+ * ## Features
+ *
+ * - **Android Library Setup**: Automatically applies the Android library plugin
+ * - **SDK Configuration**: Sets compile and target SDK versions
+ * - **Java Compatibility**: Configures Java 17 compatibility
+ * - **Kotlin Configuration**: Sets JVM target and compiler options
+ * - **Comprehensive Linting**: Full Android lint analysis with multiple report formats
+ * - **Multi-format Reports**: HTML, XML, SARIF, and text reports
+ * - **Test Source Analysis**: Includes test sources in lint analysis
+ * - **Dependency Checking**: Analyzes dependencies for potential issues
+ *
+ * ## Usage
+ *
+ * ```kotlin
+ * plugins {
+ *     id("dev.sdkforge.buildlogic.library.android")
+ * }
+ * ```
+ *
+ * ## Configuration
+ *
+ * ### SDK Configuration
+ * - **Compile SDK**: 36 (Android 14)
+ * - **Minimum SDK**: 21 (Android 5.0 Lollipop)
+ * - **Target SDK**: 36 (Android 14)
+ *
+ * ### Java Configuration
+ * - **Source Compatibility**: Java 17
+ * - **Target Compatibility**: Java 17
+ *
+ * ### Kotlin Configuration
+ * - **JVM Target**: Java 17
+ * - **Warnings as Errors**: Disabled
+ *
+ * ## Lint Configuration
+ *
+ * The plugin provides comprehensive lint analysis with the following features:
+ *
+ * ### Report Formats
+ * - **HTML Report**: `build/reports/lint-results-debug.html`
+ * - **XML Report**: `build/reports/lint-results-debug.xml`
+ * - **SARIF Report**: `build/reports/lint-results-debug.sarif`
+ * - **Text Report**: `build/reports/lint-results-debug.txt`
+ *
+ * ### Analysis Options
+ * - **Quiet Mode**: Disabled (shows progress)
+ * - **Abort on Error**: Enabled (fails build on errors)
+ * - **Check Release Builds**: Enabled
+ * - **Check Test Sources**: Enabled
+ * - **Check Generated Sources**: Enabled
+ * - **Check Dependencies**: Enabled
+ *
+ * ### Issue Severity
+ * - **Fatal Issues**: Customizable list
+ * - **Error Issues**: Customizable list
+ * - **Warning Issues**: Customizable list
+ * - **Ignore Issues**: Customizable list
+ * - **Informational Issues**: Customizable list; includes "UseTomlInstead" and "NewerVersionAvailable"
+
+ * ## Dependencies
+ *
+ * This plugin requires:
+ * - Android Gradle Plugin
+ * - Kotlin Android Plugin
+ * - Android SDK with API level 36
+ * - Java 17 or later
+ *
+ * ## Reports Location
+ *
+ * All lint reports are generated in:
+ * ```
+ * build/reports/lint-results-{variant}/
+ * ├── lint-results-{variant}.html
+ * ├── lint-results-{variant}.xml
+ * ├── lint-results-{variant}.sarif
+ * └── lint-results-{variant}.txt
+ * ```
+ *
+ * @see [Android Lint Documentation](https://developer.android.com/studio/write/lint)
+ * @see [Android Gradle Plugin](https://developer.android.com/studio/build)
+ * @see [Kotlin Android Plugin](https://kotlinlang.org/docs/android-overview.html)
+ */
 class AndroidLibraryConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
@@ -18,24 +107,36 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
             }
 
             configure<LibraryExtension> {
-                configureSDK()
-                configureJava()
-                configureLint()
+                configureSDK()      // Set SDK versions
+                configureJava()     // Configure Java compatibility
+                configureLint()     // Set up lint analysis
             }
 
+            // Configure Kotlin compiler options
             configureKotlin()
         }
     }
 }
 
+/**
+ * Configures Android SDK versions for the library.
+ *
+ * Sets the compile SDK to 36 (Android 14) and minimum SDK to 21 (Android 5.0).
+ */
 private fun CommonExtension<*, *, *, *, *, *>.configureSDK() {
-    compileSdk = 36
+    compileSdk = 36  // Android 14 (API level 36)
 
     defaultConfig {
-        minSdk = 21
+        minSdk = 21  // Android 5.0 Lollipop (API level 21)
     }
 }
 
+/**
+ * Configures Java compatibility settings.
+ *
+ * Sets both source and target compatibility to Java 17, ensuring consistent
+ * bytecode generation and compatibility across different Java versions.
+ */
 private fun CommonExtension<*, *, *, *, *, *>.configureJava() {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -43,95 +144,73 @@ private fun CommonExtension<*, *, *, *, *, *>.configureJava() {
     }
 }
 
+/**
+ * Configures Kotlin compiler options for the project.
+ *
+ * Sets the JVM target to Java 17 and configures warning handling.
+ */
 private fun Project.configureKotlin() {
     tasks.withType<KotlinCompile> {
         compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_17)
-            allWarningsAsErrors.set(false)
-            freeCompilerArgs.add(
-                "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
-            )
+            jvmTarget.set(JvmTarget.JVM_17)           // Target Java 17 bytecode
+            allWarningsAsErrors.set(false)            // Don't treat warnings as errors
         }
     }
 }
 
+/**
+ * Configures comprehensive Android lint analysis.
+ *
+ * Sets up lint with multiple report formats, comprehensive issue checking,
+ * and integration with the build process. Includes test sources and dependencies
+ * in analysis for thorough code quality assessment.
+ */
 private fun LibraryExtension.configureLint() {
     lint {
-        // set to true to turn off analysis progress reporting by lint
-        quiet = false
-        // if true, stop the gradle build if errors are found
-        abortOnError = true
-        // set to true to have all release builds run lint on issues with severity=fatal
-        // and abort the build (controlled by abortOnError above) if fatal issues are found
-        checkReleaseBuilds = true
-        // if true, only report errors
-        ignoreWarnings = false
-        // if true, emit full/absolute paths to files with errors (true by default)
-        absolutePaths = true
-        // if true, check all issues, including those that are off by default
-        checkAllWarnings = true
-        // if true, treat all warnings as errors
-        warningsAsErrors = true
-        // turn off checking the given issue id's
-        disable += listOf()
-        // turn on the given issue id's
-        enable += listOf()
-        // check *only* the given issue id's
-        checkOnly += listOf()
-        // if true, don't include source code lines in the error output
-        noLines = true
-        // if true, show all locations for an error, do not truncate lists, etc.
-        showAll = true
-        // whether lint should include full issue explanations in the text error output
-        explainIssues = true
-        // Fallback lint configuration (default severities, etc.)
-        // lintConfig = file("default-lint.xml")
-        // if true, generate a text report of issues (false by default)
-        textReport = true
-        // location to write the output; can be a file or 'stdout' or 'stderr'
-        // textOutput 'stdout'
-        // textOutput = file("$buildDir/reports/lint-results.txt")
-        // if true, generate an XML report for use by for example Jenkins
-        xmlReport = true
-        // file to write report to (if not specified, defaults to lint-results.xml)
-        // xmlOutput = file("$buildDir/reports/lint-report.xml")
-        // if true, generate an HTML report (with issue explanations, sourcecode, etc)
-        htmlReport = true
-        // optional path to HTML report (default will be lint-results.html in the builddir)
-        // htmlOutput = file("$buildDir/reports/lint-report.html")
-        // if true, generate a SARIF report (OASIS Static Analysis Results Interchange Format)
-        sarifReport = true
-        // optional path to SARIF report (default will be lint-results.sarif in the builddir)
-        // sarifOutput = file("$buildDir/reports/lint-report.html")
-        // Set the severity of the given issues to fatal (which means they will be
-        // checked during release builds (even if the lint target is not included)
-        fatal += listOf()
-        // Set the severity of the given issues to error
-        error += listOf()
-        // Set the severity of the given issues to warning
-        warning += listOf()
-        // Set the severity of the given issues to ignore (same as disabling the check)
-        ignore += listOf()
-        // Set the severity of the given issues to informational
-        informational += listOf("UseTomlInstead", "NewerVersionAvailable")
-        // Use (or create) a baseline file for issues that should not be reported
-        // baseline = file("lint-baseline.xml")
-        // Normally most lint checks are not run on test sources (except the checks
-        // dedicated to looking for mistakes in unit or instrumentation tests, unless
-        // ignoreTestSources is true). You can turn on normal lint checking in all
-        // sources with the following flag, false by default:
-        checkTestSources = true
-        // Like checkTestSources, but always skips analyzing tests -- meaning that it
-        // also ignores checks that have explicitly asked to look at test sources, such
-        // as the unused resource check.
-        ignoreTestSources = false
-        // Normally lint will skip generated sources, but you can turn it on with this flag
-        checkGeneratedSources = true
-        // Whether lint should check all dependencies too as part of its analysis.
-        // Default is false.
-        checkDependencies = true
-        // targetSdk version used when generating a lint report for a library.
-        // Must be equal or higher than main target SDK. Must be set for libraries only.
-        targetSdk = 36
+        // Analysis behavior configuration
+        quiet = false                    // Show analysis progress
+        abortOnError = true              // Fail build on lint errors
+        checkReleaseBuilds = true        // Run lint on release builds
+
+        // Issue reporting configuration
+        ignoreWarnings = false           // Report all warnings
+        absolutePaths = true             // Use absolute file paths
+        checkAllWarnings = true          // Check all issue types
+        warningsAsErrors = true          // Treat warnings as errors
+
+        // Issue filtering (customizable)
+        disable += listOf()              // Disable specific issues
+        enable += listOf()               // Enable specific issues
+        checkOnly += listOf()            // Check only specific issues
+
+        // Output configuration
+        noLines = true                   // Don't include source lines in output
+        showAll = true                   // Show all error locations
+        explainIssues = true             // Include issue explanations
+
+        // Report generation
+        textReport = true                // Generate text report
+        xmlReport = true                 // Generate XML report (CI integration)
+        htmlReport = true                // Generate HTML report (human readable)
+        sarifReport = true               // Generate SARIF report (tool integration)
+
+        // Issue severity configuration
+        fatal += listOf()                // Custom fatal issues
+        error += listOf()                // Custom error issues
+        warning += listOf()              // Custom warning issues
+        ignore += listOf()               // Custom ignored issues
+        informational += listOf(
+            "UseTomlInstead",            // Custom informational issues
+            "NewerVersionAvailable",
+        )
+
+        // Source analysis configuration
+        checkTestSources = true          // Include test sources in analysis
+        ignoreTestSources = false        // Don't skip test source analysis
+        checkGeneratedSources = true     // Include generated sources
+        checkDependencies = true         // Analyze dependencies for issues
+
+        // Library-specific configuration
+        targetSdk = 36                   // Target SDK for lint analysis (must be >= compile SDK)
     }
 }

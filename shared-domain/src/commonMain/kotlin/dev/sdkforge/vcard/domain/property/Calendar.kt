@@ -1,90 +1,133 @@
 package dev.sdkforge.vcard.domain.property
 
 /**
- *    Purpose:  To specify the URI for the busy time associated with the
- *       object that the vCard represents.
+ * Busy calendar URI property for vCard objects.
  *
- *    Value type:  A single URI value.
+ * This property specifies the URI for the busy time associated with the object
+ * that the vCard represents. The FTP or HTTP type of URI points to an iCalendar
+ * object associated with a snapshot of the next few weeks or months of busy time data.
  *
- *    Cardinality:  *
+ * ## Purpose
  *
- *    Special notes:  Where multiple FBURL properties are specified, the
- *       default FBURL property is indicated with the PREF parameter.  The
- *       FTP [RFC1738] or HTTP [RFC2616] type of URI points to an iCalendar
- *       [RFC5545] object associated with a snapshot of the next few weeks
- *       or months of busy time data.  If the iCalendar object is
- *       represented as a file or document, its file extension should be
- *       ".ifb".
-
- *    ABNF:
+ * To specify the URI for the busy time associated with the object that the vCard represents.
  *
- *      FBURL-param = "VALUE=uri" / pid-param / pref-param / type-param
- *                  / mediatype-param / altid-param / any-param
- *      FBURL-value = URI
+ * ## Value Type
  *
- *    Examples:
+ * A single URI value.
  *
- *      FBURL;PREF=1:http://www.example.com/busy/janedoe
- *      FBURL;MEDIATYPE=text/calendar:ftp://example.com/busy/project-a.ifb
+ * ## Cardinality
+ *
+ * * (One or more instances per vCard MAY be present)
+ *
+ * ## Special Notes
+ *
+ * Where multiple FBURL properties are specified, the default FBURL property is
+ * indicated with the PREF parameter. The FTP or HTTP type of URI points to an
+ * iCalendar object associated with a snapshot of the next few weeks or months of
+ * busy time data. If the iCalendar object is represented as a file or document,
+ * its file extension should be ".ifb".
+ *
+ * ## Examples
+ *
+ * ```
+ * FBURL;PREF=1:http://www.example.com/busy/janedoe
+ * FBURL;MEDIATYPE=text/calendar:ftp://example.com/busy/project-a.ifb
+ * ```
+ *
+ * @see dev.sdkforge.vcard.domain.property.Property.Calendar
  */
 object BusyCalendarUri : Property.Calendar {
+    /**
+     * The property key for busy calendar URI.
+     *
+     * @return "FBURL"
+     */
     override val key: String get() = "FBURL"
 }
 
 /**
- *    Purpose:  To specify the calendar user address [RFC5545] to which a
- *       scheduling request [RFC5546] should be sent for the object
- *       represented by the vCard.
+ * Calendar user URI property for vCard objects.
  *
- *    Value type:  A single URI value.
+ * This property specifies the calendar user address to which a scheduling request
+ * should be sent for the object represented by the vCard.
  *
- *    Cardinality:  *
+ * ## Purpose
  *
- *    Special notes:  Where multiple CALADRURI properties are specified,
- *       the default CALADRURI property is indicated with the PREF
- *       parameter.
+ * To specify the calendar user address to which a scheduling request should be
+ * sent for the object represented by the vCard.
  *
- *    ABNF:
+ * ## Value Type
  *
- *      CALADRURI-param = "VALUE=uri" / pid-param / pref-param / type-param
- *                      / mediatype-param / altid-param / any-param
- *      CALADRURI-value = URI
+ * A single URI value.
  *
- *    Example:
+ * ## Cardinality
  *
- *      CALADRURI;PREF=1:mailto:janedoe@example.com
- *      CALADRURI:http://example.com/calendar/jdoe
+ * * (One or more instances per vCard MAY be present)
+ *
+ * ## Special Notes
+ *
+ * Where multiple CALADRURI properties are specified, the default CALADRURI
+ * property is indicated with the PREF parameter.
+ *
+ * ## Examples
+ *
+ * ```
+ * CALADRURI;PREF=1:mailto:janedoe@example.com
+ * CALADRURI:http://example.com/calendar/jdoe
+ * ```
+ *
+ * @see dev.sdkforge.vcard.domain.property.Property.Calendar
  */
 object CalendarUserUri : Property.Calendar {
+    /**
+     * The property key for calendar user URI.
+     *
+     * @return "CALADRURI"
+     */
     override val key: String get() = "CALADRURI"
 }
 
 /**
- *    Purpose:  To specify the URI for a calendar associated with the
- *       object represented by the vCard.
+ * Calendar URI property for vCard objects.
  *
- *    Value type:  A single URI value.
+ * This property specifies the URI for a calendar associated with the object
+ * represented by the vCard. The property should contain a URI pointing to an
+ * iCalendar object associated with a snapshot of the user's calendar store.
  *
- *    Cardinality:  *
+ * ## Purpose
  *
- *    Special notes:  Where multiple CALURI properties are specified, the
- *       default CALURI property is indicated with the PREF parameter.  The
- *       property should contain a URI pointing to an iCalendar [RFC5545]
- *       object associated with a snapshot of the user's calendar store.
- *       If the iCalendar object is represented as a file or document, its
- *       file extension should be ".ics".
+ * To specify the URI for a calendar associated with the object represented by the vCard.
  *
- *    ABNF:
+ * ## Value Type
  *
- *      CALURI-param = "VALUE=uri" / pid-param / pref-param / type-param
- *                   / mediatype-param / altid-param / any-param
- *      CALURI-value = URI
+ * A single URI value.
  *
- *    Examples:
+ * ## Cardinality
  *
- *      CALURI;PREF=1:http://cal.example.com/calA
- *      CALURI;MEDIATYPE=text/calendar:ftp://ftp.example.com/calA.ics
+ * * (One or more instances per vCard MAY be present)
+ *
+ * ## Special Notes
+ *
+ * Where multiple CALURI properties are specified, the default CALURI property is
+ * indicated with the PREF parameter. The property should contain a URI pointing to
+ * an iCalendar object associated with a snapshot of the user's calendar store. If
+ * the iCalendar object is represented as a file or document, its file extension
+ * should be ".ics".
+ *
+ * ## Examples
+ *
+ * ```
+ * CALURI;PREF=1:http://cal.example.com/calA
+ * CALURI;MEDIATYPE=text/calendar:ftp://ftp.example.com/calA.ics
+ * ```
+ *
+ * @see dev.sdkforge.vcard.domain.property.Property.Calendar
  */
 object CalendarUri : Property.Calendar {
+    /**
+     * The property key for calendar URI.
+     *
+     * @return "CALURI"
+     */
     override val key: String get() = "CALURI"
 }

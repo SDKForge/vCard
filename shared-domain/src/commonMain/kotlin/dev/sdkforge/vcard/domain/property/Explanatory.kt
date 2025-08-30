@@ -1,258 +1,373 @@
 package dev.sdkforge.vcard.domain.property
 
 /**
- *    Purpose:  To specify application category information about the
- *       vCard, also known as "tags".
+ * Categories property for vCard objects.
  *
- *    Value type:  One or more text values separated by a COMMA character
- *       (U+002C).
+ * This property specifies application category information about the vCard,
+ * also known as "tags". It allows categorization and tagging of vCard objects
+ * for organizational purposes.
  *
- *    Cardinality:  *
-
- *    ABNF:
+ * ## Purpose
  *
- *      CATEGORIES-param = "VALUE=text" / pid-param / pref-param
- *                       / type-param / altid-param / any-param
- *      CATEGORIES-value = text-list
+ * To specify application category information about the vCard, also known as "tags".
  *
- *    Example:
+ * ## Value Type
  *
- *            CATEGORIES:TRAVEL AGENT
+ * One or more text values separated by a COMMA character (U+002C).
  *
- *            CATEGORIES:INTERNET,IETF,INDUSTRY,INFORMATION TECHNOLOGY
+ * ## Cardinality
+ *
+ * * (One or more instances per vCard MAY be present)
+ *
+ * ## Examples
+ *
+ * ```
+ * CATEGORIES:TRAVEL AGENT
+ * CATEGORIES:INTERNET,IETF,INDUSTRY,INFORMATION TECHNOLOGY
+ * ```
+ *
+ * @see dev.sdkforge.vcard.domain.property.Property.Explanatory
  */
 object Categories : Property.Explanatory {
+    /**
+     * The property key for categories.
+     *
+     * @return "CATEGORIES"
+     */
     override val key: String get() = "CATEGORIES"
 }
 
 /**
- *    Purpose:  To specify supplemental information or a comment that is
- *       associated with the vCard.
+ * Note property for vCard objects.
  *
- *    Value type:  A single text value.
+ * This property specifies supplemental information or a comment that is
+ * associated with the vCard. It is based on the X.520 Description attribute.
  *
- *    Cardinality:  *
+ * ## Purpose
  *
- *    Special notes:  The property is based on the X.520 Description
- *       attribute [CCITT.X520.1988].
+ * To specify supplemental information or a comment that is associated with the vCard.
  *
- *    ABNF:
+ * ## Value Type
  *
- *      NOTE-param = "VALUE=text" / language-param / pid-param / pref-param
- *                 / type-param / altid-param / any-param
- *      NOTE-value = text
+ * A single text value.
  *
- *    Example:
+ * ## Cardinality
  *
- *            NOTE:This fax number is operational 0800 to 1715
- *              EST\, Mon-Fri.
+ * * (One or more instances per vCard MAY be present)
+ *
+ * ## Special Notes
+ *
+ * The property is based on the X.520 Description attribute.
+ *
+ * ## Example
+ *
+ * ```
+ * NOTE:This fax number is operational 0800 to 1715 EST\, Mon-Fri.
+ * ```
+ *
+ * @see dev.sdkforge.vcard.domain.property.Property.Explanatory
  */
 object Note : Property.Explanatory {
+    /**
+     * The property key for note.
+     *
+     * @return "NOTE"
+     */
     override val key: String get() = "NOTE"
 }
 
 /**
- *    Purpose:  To specify the identifier for the product that created the
- *       vCard object.
+ * Product ID property for vCard objects.
  *
- *    Type value:  A single text value.
+ * This property specifies the identifier for the product that created the vCard object.
+ * Implementations should use a method such as that specified for Formal Public
+ * Identifiers or Universal Resource Names to ensure uniqueness.
  *
- *    Cardinality:  *1
+ * ## Purpose
  *
- *    Special notes:  Implementations SHOULD use a method such as that
- *       specified for Formal Public Identifiers in [ISO9070] or for
- *       Universal Resource Names in [RFC3406] to ensure that the text
- *       value is unique.
-
- *    ABNF:
+ * To specify the identifier for the product that created the vCard object.
  *
- *      PRODID-param = "VALUE=text" / any-param
- *      PRODID-value = text
+ * ## Value Type
  *
- *    Example:
+ * A single text value.
  *
- *            PRODID:-//ONLINE DIRECTORY//NONSGML Version 1//EN
+ * ## Cardinality
+ *
+ * *1 (Exactly one instance per vCard MAY be present)
+ *
+ * ## Special Notes
+ *
+ * Implementations SHOULD use a method such as that specified for Formal Public
+ * Identifiers in ISO 9070 or for Universal Resource Names in RFC 3406 to ensure
+ * that the text value is unique.
+ *
+ * ## Example
+ *
+ * ```
+ * PRODID:-//ONLINE DIRECTORY//NONSGML Version 1//EN
+ * ```
+ *
+ * @see dev.sdkforge.vcard.domain.property.Property.Explanatory
  */
 object ProductId : Property.Explanatory {
+    /**
+     * The property key for product ID.
+     *
+     * @return "PRODID"
+     */
     override val key: String get() = "PRODID"
 }
 
 /**
- *    Purpose:  To specify revision information about the current vCard.
+ * Revision property for vCard objects.
  *
- *    Value type:  A single timestamp value.
+ * This property specifies revision information about the current vCard.
+ * The value distinguishes the current revision of the information in this
+ * vCard from other renditions of the information.
  *
- *    Cardinality:  *1
+ * ## Purpose
  *
- *    Special notes:  The value distinguishes the current revision of the
- *       information in this vCard for other renditions of the information.
+ * To specify revision information about the current vCard.
  *
- *    ABNF:
+ * ## Value Type
  *
- *      REV-param = "VALUE=timestamp" / any-param
- *      REV-value = timestamp
+ * A single timestamp value.
  *
- *    Example:
+ * ## Cardinality
  *
- *            REV:19951031T222710Z
+ * *1 (Exactly one instance per vCard MAY be present)
+ *
+ * ## Special Notes
+ *
+ * The value distinguishes the current revision of the information in this vCard
+ * from other renditions of the information.
+ *
+ * ## Example
+ *
+ * ```
+ * REV:19951031T222710Z
+ * ```
+ *
+ * @see dev.sdkforge.vcard.domain.property.Property.Explanatory
  */
 object Revision : Property.Explanatory {
+    /**
+     * The property key for revision.
+     *
+     * @return "REV"
+     */
     override val key: String get() = "REV"
 }
 
 /**
- *    Purpose:  To specify a digital sound content information that
- *       annotates some aspect of the vCard.  This property is often used
- *       to specify the proper pronunciation of the name property value of
- *       the vCard.
+ * Sound property for vCard objects.
  *
- *    Value type:  A single URI.
+ * This property specifies a digital sound content information that annotates
+ * some aspect of the vCard. This property is often used to specify the proper
+ * pronunciation of the name property value of the vCard.
  *
- *    Cardinality:  *
+ * ## Purpose
  *
- *    ABNF:
+ * To specify a digital sound content information that annotates some aspect of the vCard.
  *
- *      SOUND-param = "VALUE=uri" / language-param / pid-param / pref-param
- *                  / type-param / mediatype-param / altid-param
- *                  / any-param
- *      SOUND-value = URI
-
- *    Example:
+ * ## Value Type
  *
- *      SOUND:CID:JOHNQPUBLIC.part8.19960229T080000.xyzMail@example.com
+ * A single URI.
  *
- *      SOUND:data:audio/basic;base64,MIICajCCAdOgAwIBAgICBEUwDQYJKoZIh
- *       AQEEBQAwdzELMAkGA1UEBhMCVVMxLDAqBgNVBAoTI05ldHNjYXBlIENvbW11bm
- *       ljYXRpb25zIENvcnBvcmF0aW9uMRwwGgYDVQQLExNJbmZvcm1hdGlvbiBTeXN0
- *       <...the remainder of base64-encoded data...>
+ * ## Cardinality
+ *
+ * * (One or more instances per vCard MAY be present)
+ *
+ * ## Examples
+ *
+ * ```
+ * SOUND:CID:JOHNQPUBLIC.part8.19960229T080000.xyzMail@example.com
+ * SOUND:data:audio/basic;base64,MIICajCCAdOgAwIBAgICBEUwDQYJKoZIh...
+ * ```
+ *
+ * @see dev.sdkforge.vcard.domain.property.Property.Explanatory
  */
 object Sound : Property.Explanatory {
+    /**
+     * The property key for sound.
+     *
+     * @return "SOUND"
+     */
     override val key: String get() = "SOUND"
 }
 
 /**
- *    Purpose:  To specify a value that represents a globally unique
- *       identifier corresponding to the entity associated with the vCard.
+ * UID property for vCard objects.
  *
- *    Value type:  A single URI value.  It MAY also be reset to free-form
- *       text.
+ * This property specifies a value that represents a globally unique identifier
+ * corresponding to the entity associated with the vCard. It is used to uniquely
+ * identify the object that the vCard represents.
  *
- *    Cardinality:  *1
+ * ## Purpose
  *
- *    Special notes:  This property is used to uniquely identify the object
- *       that the vCard represents.  The "uuid" URN namespace defined in
- *       [RFC4122] is particularly well suited to this task, but other URI
- *       schemes MAY be used.  Free-form text MAY also be used.
+ * To specify a value that represents a globally unique identifier corresponding
+ * to the entity associated with the vCard.
  *
- *    ABNF:
+ * ## Value Type
  *
- *      UID-param = UID-uri-param / UID-text-param
- *      UID-value = UID-uri-value / UID-text-value
- *        ; Value and parameter MUST match.
+ * A single URI value. It MAY also be reset to free-form text.
  *
- *      UID-uri-param = "VALUE=uri"
- *      UID-uri-value = URI
+ * ## Cardinality
  *
- *      UID-text-param = "VALUE=text"
- *      UID-text-value = text
+ * *1 (Exactly one instance per vCard MAY be present)
  *
- *      UID-param =/ any-param
+ * ## Special Notes
  *
- *    Example:
+ * This property is used to uniquely identify the object that the vCard represents.
+ * The "uuid" URN namespace defined in RFC 4122 is particularly well suited to this
+ * task, but other URI schemes MAY be used. Free-form text MAY also be used.
  *
- *            UID:urn:uuid:f81d4fae-7dec-11d0-a765-00a0c91e6bf6
+ * ## Example
+ *
+ * ```
+ * UID:urn:uuid:f81d4fae-7dec-11d0-a765-00a0c91e6bf6
+ * ```
+ *
+ * @see dev.sdkforge.vcard.domain.property.Property.Explanatory
  */
 object UID : Property.Explanatory {
+    /**
+     * The property key for UID.
+     *
+     * @return "UID"
+     */
     override val key: String get() = "UID"
 }
 
 /**
- *    Purpose:  To give a global meaning to a local PID source identifier.
+ * Client PID Map property for vCard objects.
  *
- *    Value type:  A semicolon-separated pair of values.  The first field
- *       is a small integer corresponding to the second field of a PID
- *       parameter instance.  The second field is a URI.  The "uuid" URN
- *       namespace defined in [RFC4122] is particularly well suited to this
- *       task, but other URI schemes MAY be used.
+ * This property gives a global meaning to a local PID source identifier.
+ * It consists of a semicolon-separated pair of values where the first field
+ * is a small integer corresponding to the second field of a PID parameter
+ * instance, and the second field is a URI.
  *
- *    Cardinality:  *
+ * ## Purpose
  *
- *    Special notes:  PID source identifiers (the source identifier is the
- *       second field in a PID parameter instance) are small integers that
- *       only have significance within the scope of a single vCard
- *       instance.  Each distinct source identifier present in a vCard MUST
- *       have an associated CLIENTPIDMAP.  See Section 7 for more details
- *       on the usage of CLIENTPIDMAP.
+ * To give a global meaning to a local PID source identifier.
  *
- *       PID source identifiers MUST be strictly positive.  Zero is not
- *       allowed.
+ * ## Value Type
  *
- *       As a special exception, the PID parameter MUST NOT be applied to
- *       this property.
+ * A semicolon-separated pair of values. The first field is a small integer
+ * corresponding to the second field of a PID parameter instance. The second
+ * field is a URI.
  *
- *    ABNF:
+ * ## Cardinality
  *
- *      CLIENTPIDMAP-param = any-param
- *      CLIENTPIDMAP-value = 1*DIGIT ";" URI
+ * * (One or more instances per vCard MAY be present)
  *
- *    Example:
+ * ## Special Notes
  *
- *      TEL;PID=3.1,4.2;VALUE=uri:tel:+1-555-555-5555
- *      EMAIL;PID=4.1,5.2:jdoe@example.com
- *      CLIENTPIDMAP:1;urn:uuid:3df403f4-5924-4bb7-b077-3c711d9eb34b
- *      CLIENTPIDMAP:2;urn:uuid:d89c9c7a-2e1b-4832-82de-7e992d95faa5
+ * PID source identifiers (the source identifier is the second field in a PID
+ * parameter instance) are small integers that only have significance within
+ * the scope of a single vCard instance. Each distinct source identifier present
+ * in a vCard MUST have an associated CLIENTPIDMAP.
+ *
+ * PID source identifiers MUST be strictly positive. Zero is not allowed.
+ *
+ * As a special exception, the PID parameter MUST NOT be applied to this property.
+ *
+ * ## Example
+ *
+ * ```
+ * TEL;PID=3.1,4.2;VALUE=uri:tel:+1-555-555-5555
+ * EMAIL;PID=4.1,5.2:jdoe@example.com
+ * CLIENTPIDMAP:1;urn:uuid:3df403f4-5924-4bb7-b077-3c711d9eb34b
+ * CLIENTPIDMAP:2;urn:uuid:d89c9c7a-2e1b-4832-82de-7e992d95faa5
+ * ```
+ *
+ * @see dev.sdkforge.vcard.domain.property.Property.Explanatory
  */
 object ClientPIDMap : Property.Explanatory {
+    /**
+     * The property key for client PID map.
+     *
+     * @return "CLIENTPIDMAP"
+     */
     override val key: String get() = "CLIENTPIDMAP"
 }
 
 /**
- *    Purpose:  To specify a uniform resource locator associated with the
- *       object to which the vCard refers.  Examples for individuals
- *       include personal web sites, blogs, and social networking site
- *       identifiers.
+ * URL property for vCard objects.
  *
- *    Cardinality:  *
+ * This property specifies a uniform resource locator associated with the object
+ * to which the vCard refers. Examples for individuals include personal web sites,
+ * blogs, and social networking site identifiers.
  *
- *    Value type:  A single uri value.
-
- *    ABNF:
+ * ## Purpose
  *
- *      URL-param = "VALUE=uri" / pid-param / pref-param / type-param
- *                / mediatype-param / altid-param / any-param
- *      URL-value = URI
+ * To specify a uniform resource locator associated with the object to which
+ * the vCard refers.
  *
- *    Example:
+ * ## Value Type
  *
- *            URL:http://example.org/restaurant.french/~chezchic.html
+ * A single URI value.
+ *
+ * ## Cardinality
+ *
+ * * (One or more instances per vCard MAY be present)
+ *
+ * ## Example
+ *
+ * ```
+ * URL:http://example.org/restaurant.french/~chezchic.html
+ * ```
+ *
+ * @see dev.sdkforge.vcard.domain.property.Property.Explanatory
  */
 object URL : Property.Explanatory {
+    /**
+     * The property key for URL.
+     *
+     * @return "URL"
+     */
     override val key: String get() = "URL"
 }
 
 /**
- *    Purpose:  To specify the version of the vCard specification used to
- *       format this vCard.
+ * Version property for vCard objects.
  *
- *    Value type:  A single text value.
+ * This property specifies the version of the vCard specification used to format
+ * this vCard. It MUST be present in the vCard object and must appear immediately
+ * after BEGIN:VCARD.
  *
- *    Cardinality:  1
+ * ## Purpose
  *
- *    Special notes:  This property MUST be present in the vCard object,
- *       and it must appear immediately after BEGIN:VCARD.  The value MUST
- *       be "4.0" if the vCard corresponds to this specification.  Note
- *       that earlier versions of vCard allowed this property to be placed
- *       anywhere in the vCard object, or even to be absent.
+ * To specify the version of the vCard specification used to format this vCard.
  *
- *    ABNF:
+ * ## Value Type
  *
- *      VERSION-param = "VALUE=text" / any-param
- *      VERSION-value = "4.0"
+ * A single text value.
  *
- *    Example:
+ * ## Cardinality
  *
- *            VERSION:4.0
+ * 1 (Exactly one instance per vCard MUST be present)
+ *
+ * ## Special Notes
+ *
+ * This property MUST be present in the vCard object, and it must appear immediately
+ * after BEGIN:VCARD. The value MUST be "4.0" if the vCard corresponds to this
+ * specification. Note that earlier versions of vCard allowed this property to be
+ * placed anywhere in the vCard object, or even to be absent.
+ *
+ * ## Example
+ *
+ * ```
+ * VERSION:4.0
+ * ```
+ *
+ * @see dev.sdkforge.vcard.domain.property.Property.Explanatory
  */
 object Version : Property.Explanatory {
+    /**
+     * The property key for version.
+     *
+     * @return "VERSION"
+     */
     override val key: String get() = "VERSION"
 }

@@ -1,6 +1,6 @@
 package dev.sdkforge.vcard
 
-import dev.sdkforge.template.Library.VERSION
+import dev.sdkforge.vcard.Library.VERSION
 
 /**
  * Library metadata and version information.

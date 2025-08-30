@@ -57,7 +57,7 @@
 
 ```kotlin
 dependencies {
-    implementation("dev.sdkforge.template:shared:[VERSION]")
+    implementation("dev.sdkforge.vcard:shared:[VERSION]")
 }
 ```
 
@@ -65,7 +65,7 @@ dependencies {
 
 ```groovy
 dependencies {
-    implementation 'dev.sdkforge.template:shared:[VERSION]'
+    implementation 'dev.sdkforge.vcard:shared:[VERSION]'
 }
 ```
 
@@ -73,8 +73,8 @@ dependencies {
 
 ```xml
 <dependency>
-    <groupId>dev.sdkforge.template</groupId>
-    <artifactId>sdk</artifactId>
+    <groupId>dev.sdkforge.vcard</groupId>
+    <artifactId>shared</artifactId>
     <version>[VERSION]</version>
 </dependency>
 ```
@@ -96,8 +96,8 @@ dependencies {
 
 If you encounter any issues with this release, please:
 
-1. Check our [documentation](https://github.com/SDKForge/template-sdk#readme)
-2. Search existing [issues](https://github.com/SDKForge/template-sdk/issues)
+1. Check our [documentation](https://github.com/SDKForge/vCard#readme)
+2. Search existing [issues](https://github.com/SDKForge/vCard/issues)
 3. Create a new issue with detailed information
 
 ## Contributors

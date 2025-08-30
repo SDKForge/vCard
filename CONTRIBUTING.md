@@ -39,11 +39,11 @@ Before contributing, please:
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/SDKForge/template-sdk.git SDKForgeTemplate
+   git clone https://github.com/SDKForge/vCard.git SDKForgeVCard
    or
-   git clone git@github.com:SDKForge/template-sdk.git SDKForgeTemplate
+   git clone git@github.com:SDKForge/vCard.git SDKForgeVCard
 
-   cd SDKForgeTemplate
+   cd SDKForgeVCard
    ```
 
 2. **Build the project**:

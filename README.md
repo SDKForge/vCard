@@ -52,23 +52,23 @@ Once published, you'll be able to install the SDK using:
 #### Gradle (Kotlin DSL)
 ```kotlin
 dependencies {
-    implementation("dev.sdkforge.template:shared:1.0.0")
-    implementation("dev.sdkforge.template:shared-core:1.0.0")
+    implementation("dev.sdkforge.vcard:shared:1.0.0")
+    implementation("dev.sdkforge.vcard:shared-core:1.0.0")
 }
 ```
 
 #### Gradle (Groovy)
 ```groovy
 dependencies {
-    implementation 'dev.sdkforge.template:shared:1.0.0'
-    implementation 'dev.sdkforge.template:shared-core:1.0.0'
+    implementation 'dev.sdkforge.vcard:shared:1.0.0'
+    implementation 'dev.sdkforge.vcard:shared-core:1.0.0'
 }
 ```
 
 #### Maven
 ```xml
 <dependency>
-    <groupId>dev.sdkforge.template</groupId>
+    <groupId>dev.sdkforge.vcard</groupId>
     <artifactId>shared</artifactId>
     <version>1.0.0</version>
 </dependency>
@@ -88,8 +88,8 @@ dependencies {
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/SDKForge/template-sdk.git SDKForgeTemplate
-   cd SDKForgeTemplate
+   git clone https://github.com/SDKForge/vCard.git SDKForgeVCard
+   cd SDKForgeVCard
    ```
 
 2. **Build the project**:
@@ -284,9 +284,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🆘 Support
 
-- **Documentation**: Check our [documentation](https://github.com/SDKForge/template-sdk#readme)
-- **Issues**: [GitHub Issues](https://github.com/SDKForge/template-sdk/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/orgs/SDKForge/discussions)
+- **Documentation**: Check our [documentation](https://github.com/SDKForge/vCard#readme)
+- **Issues**: [GitHub Issues](https://github.com/SDKForge/vCard/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/SDKForge/vCard/discussions)
 - **Email**: [volodymyr.nevmerzhytskyi@sdkforge.dev](mailto:volodymyr.nevmerzhytskyi@sdkforge.dev)
 
 ## 🗺️ Roadmap

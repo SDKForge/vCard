@@ -94,7 +94,13 @@ class PublishingConventionPlugin : Plugin<Project> {
             }
 
             val group = providers.gradleProperty("publishing.group").get()
-            val version = providers.gradleProperty("publishing.version").get()
+            val version = buildString {
+                append(providers.gradleProperty("publishing.version").get())
+
+                if (providers.environmentVariable("SNAPSHOT").isPresent) {
+                    append("-SNAPSHOT")
+                }
+            }
             val owner = providers.gradleProperty("publishing.owner").get()
             val repository = providers.gradleProperty("publishing.repository").get()
             val description = providers.gradleProperty("publishing.description").get()

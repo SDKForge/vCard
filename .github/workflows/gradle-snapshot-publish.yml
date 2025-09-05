@@ -31,7 +31,8 @@ jobs:
       run: chmod +x gradlew
 
     - name: Write signing inMemory key
-      run: echo ${{ secrets.SIGNING_IN_MEMORY_KEY }} > ${{ github.workspace }}/key.txt
+      run: |
+        echo "${{ secrets.SIGNING_IN_MEMORY_KEY }}" > ${{ github.workspace }}/key.txt
 
     - name: Publish to Maven Central
       run: ./gradlew publishToMavenCentral

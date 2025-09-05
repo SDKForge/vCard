@@ -20,6 +20,7 @@ kotlin {
 dependencies {
     compileOnly(libs.android.gradle.plugin)
     compileOnly(libs.kotlin.gradle.plugin)
+    implementation(libs.maven.publish.gradle.plugin)
 }
 
 tasks {

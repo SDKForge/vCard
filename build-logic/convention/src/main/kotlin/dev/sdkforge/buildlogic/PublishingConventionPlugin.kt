@@ -1,5 +1,6 @@
 package dev.sdkforge.buildlogic
 
+import com.vanniktech.maven.publish.MavenPublishBaseExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.publish.PublishingExtension
@@ -89,23 +90,66 @@ class PublishingConventionPlugin : Plugin<Project> {
         with(target) {
             with(pluginManager) {
                 apply("maven-publish")
+                apply("com.vanniktech.maven.publish")
             }
 
-            group = providers.gradleProperty("publishing.group").get()
-            version = providers.gradleProperty("publishing.version").get()
+            val group = providers.gradleProperty("publishing.group").get()
+            val version = providers.gradleProperty("publishing.version").get()
+            val owner = providers.gradleProperty("publishing.owner").get()
+            val repository = providers.gradleProperty("publishing.repository").get()
+            val description = providers.gradleProperty("publishing.description").get()
+
+            setGroup(group)
+            setVersion(version)
 
             configure<PublishingExtension> {
                 repositories {
                     maven {
-                        val owner = providers.gradleProperty("publishing.owner").get()
-                        val repository = providers.gradleProperty("publishing.repository").get()
-
                         name = "GitHub"
                         url = uri("https://maven.pkg.github.com/$owner/$repository")
                         credentials {
                             username = providers.gradleProperty("publishing.user").orNull?.toString() ?: System.getenv("USERNAME")
                             password = providers.gradleProperty("publishing.key").orNull?.toString() ?: System.getenv("TOKEN")
                         }
+                    }
+                }
+            }
+
+            configure<MavenPublishBaseExtension> {
+                publishToMavenCentral()
+                signAllPublications()
+
+                coordinates(
+                    groupId = group,
+                    artifactId = target.name.replace("shared", repository),
+                    version = version,
+                )
+
+                pom {
+                    name.set(repository)
+                    this.description.set(description)
+
+                    inceptionYear.set("2024")
+
+                    url.set("https://github.com/$owner/$repository")
+
+                    licenses {
+                        license {
+                            name.set("MIT License")
+                            url.set("https://github.com/$owner/$repository/blob/main/LICENSE")
+                        }
+                    }
+                    developers {
+                        developer {
+                            id.set("azazellj")
+                            name.set("Volodymyr Nevmerzhytskyi")
+                            url.set("https://github.com/azazellj")
+                        }
+                    }
+                    scm {
+                        url.set("https://github.com/$owner/$repository")
+                        connection.set("scm:git:git://github.com/$owner/$repository.git")
+                        developerConnection.set("scm:git:ssh://git@github.com/$owner/$repository.git")
                     }
                 }
             }

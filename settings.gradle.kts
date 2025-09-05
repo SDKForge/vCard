@@ -13,6 +13,11 @@ pluginManagement {
                 includeGroupAndSubgroups("com.google")
             }
         }
+        maven {
+            name = "Maven Central Snapshots"
+            setUrl("https://central.sonatype.com/repository/maven-snapshots/")
+            content { includeGroupByRegex("^dev\\.sdkforge\\.(.+)\$") }
+        }
         gradlePluginPortal()
         mavenCentral()
     }
@@ -28,6 +33,11 @@ dependencyResolutionManagement {
                 includeGroupAndSubgroups("com.android")
                 includeGroupAndSubgroups("com.google")
             }
+        }
+        maven {
+            name = "Maven Central Snapshots"
+            setUrl("https://central.sonatype.com/repository/maven-snapshots/")
+            content { includeGroupByRegex("^dev\\.sdkforge\\.(.+)\$") }
         }
         mavenCentral()
     }

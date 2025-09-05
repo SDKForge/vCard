@@ -9,6 +9,11 @@ dependencyResolutionManagement {
                 includeGroupAndSubgroups("com.google")
             }
         }
+        maven {
+            name = "Maven Central Snapshots"
+            setUrl("https://central.sonatype.com/repository/maven-snapshots/")
+            content { includeGroupByRegex("^dev\\.sdkforge\\.(.+)\$") }
+        }
         mavenCentral()
     }
 

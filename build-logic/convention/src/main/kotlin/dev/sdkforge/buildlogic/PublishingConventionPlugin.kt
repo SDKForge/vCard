@@ -127,12 +127,12 @@ class PublishingConventionPlugin : Plugin<Project> {
 
                 coordinates(
                     groupId = group,
-                    artifactId = target.name.replace("shared", repository),
+                    artifactId = target.name.replace("shared", repository.lowercase()),
                     version = version,
                 )
 
                 pom {
-                    name.set(repository.lowercase())
+                    name.set(repository)
                     this.description.set(description)
 
                     inceptionYear.set("2024")

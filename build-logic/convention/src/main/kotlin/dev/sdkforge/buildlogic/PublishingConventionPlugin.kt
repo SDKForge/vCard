@@ -132,7 +132,7 @@ class PublishingConventionPlugin : Plugin<Project> {
                 )
 
                 pom {
-                    name.set(repository)
+                    name.set(repository.lowercase())
                     this.description.set(description)
 
                     inceptionYear.set("2024")

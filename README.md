@@ -23,7 +23,7 @@ A modern Kotlin Multiplatform SDK template for building cross-platform libraries
 
 - **Android**: API 21+ (Android 5.0+)
 - **iOS**: 12.0+
-- **Kotlin**: 2.2.20-Beta2+
+- **Kotlin**: 2.2.20+
 - **Gradle**: 8.0+
 
 ## 🏗️ Project Structure
@@ -81,7 +81,7 @@ dependencies {
 - **Java Development Kit (JDK)**: Version 17 or higher
 - **Android Studio**: Latest stable version (for Android development)
 - **Xcode**: Latest stable version (for iOS development, macOS only)
-- **Kotlin**: Version 2.2.20-Beta2 or higher
+- **Kotlin**: Version 2.2.20 or higher
 - **Gradle**: Version 8.0 or higher
 
 ### Development Setup

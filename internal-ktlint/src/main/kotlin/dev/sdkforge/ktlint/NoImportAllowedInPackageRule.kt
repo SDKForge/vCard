@@ -45,7 +45,7 @@ class NoImportAllowedInPackageRule(private val forbiddenPackageImports: Map<Stri
         for (fileImport in fileImports) {
             val importName = (fileImport.psi as KtImportDirective).importPath?.pathStr.orEmpty()
 
-            if (forbiddenImports.none { fileImport.text.contains(it) }) continue
+            if (forbiddenImports.none { importName.matches(Regex(it)) }) continue
 
             emit(fileImport.startOffset, RULE_VIOLATION_MESSAGE.format(importName, filePackage.qualifiedName), false)
         }

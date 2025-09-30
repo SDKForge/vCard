@@ -15,9 +15,15 @@ class SdkForgeRuleSetProvider : RuleSetProviderV3(RuleSetId(SDKFORGE_RULE_SET_ID
     )
 
     companion object {
-        private val FORBIDDEN_PACKAGE_IMPORTS = mapOf(
-            "domain" to setOf("data", "ui"),
-            "data" to setOf("ui", "presentation"),
+        internal val FORBIDDEN_PACKAGE_IMPORTS = mapOf(
+            "domain" to setOf(
+                "^dev\\.sdkforge\\..*\\.data(\\..*)?\$",
+                "^dev\\.sdkforge\\..*\\.ui(\\..*)?\$",
+            ),
+            "data" to setOf(
+                "^dev\\.sdkforge\\..*\\.ui(\\..*)?\$",
+                "^dev\\.sdkforge\\..*\\.presentation(\\..*)?\$",
+            ),
         )
     }
 }

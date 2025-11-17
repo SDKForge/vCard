@@ -1,13 +1,12 @@
 package dev.sdkforge.buildlogic
 
-import com.android.build.api.dsl.CommonExtension
-import com.android.build.gradle.LibraryExtension
-import org.gradle.api.JavaVersion
+import com.android.build.api.dsl.androidLibrary
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 /**
@@ -103,10 +102,10 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             with(pluginManager) {
-                apply("com.android.library")
+                apply("com.android.kotlin.multiplatform.library")
             }
 
-            configure<LibraryExtension> {
+            configure<KotlinMultiplatformExtension> {
                 configureSDK()      // Set SDK versions
                 configureJava()     // Configure Java compatibility
                 configureLint()     // Set up lint analysis
@@ -123,12 +122,10 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
  *
  * Sets the compile SDK to 36 (Android 14) and minimum SDK to 21 (Android 5.0).
  */
-private fun CommonExtension<*, *, *, *, *, *>.configureSDK() {
-    compileSdk = 36  // Android 14 (API level 36)
+private fun KotlinMultiplatformExtension.configureSDK() = androidLibrary {
+    compileSdk = 36 // Android 14 (API level 36)
 
-    defaultConfig {
-        minSdk = 21  // Android 5.0 Lollipop (API level 21)
-    }
+    minSdk = 21     // Android 5.0 Lollipop (API level 21)
 }
 
 /**
@@ -137,10 +134,9 @@ private fun CommonExtension<*, *, *, *, *, *>.configureSDK() {
  * Sets both source and target compatibility to Java 17, ensuring consistent
  * bytecode generation and compatibility across different Java versions.
  */
-private fun CommonExtension<*, *, *, *, *, *>.configureJava() {
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+private fun KotlinMultiplatformExtension.configureJava() = androidLibrary {
+    compilerOptions {
+        jvmTarget.set(JvmTarget.JVM_17)
     }
 }
 
@@ -165,7 +161,7 @@ private fun Project.configureKotlin() {
  * and integration with the build process. Includes test sources and dependencies
  * in analysis for thorough code quality assessment.
  */
-private fun LibraryExtension.configureLint() {
+private fun KotlinMultiplatformExtension.configureLint() = androidLibrary {
     lint {
         // Analysis behavior configuration
         quiet = false                    // Show analysis progress

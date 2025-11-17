@@ -60,7 +60,7 @@ subprojects {
         apply<DependencyGuardPlugin>()
 
         configure<DependencyGuardPluginExtension> {
-            configuration("releaseRuntimeClasspath")
+            configuration("androidRuntimeClasspath")
         }
 
         apply<DokkaPlugin>()

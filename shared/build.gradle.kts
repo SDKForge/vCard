@@ -1,3 +1,4 @@
+import com.android.build.api.dsl.androidLibrary
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 import org.jetbrains.kotlin.gradle.plugin.mpp.NativeBuildType
 import org.jetbrains.kotlin.konan.target.Family
@@ -13,6 +14,10 @@ plugins {
 }
 
 kotlin {
+    androidLibrary {
+        namespace = "dev.sdkforge.template"
+    }
+
     // export dependencies for iOS
     targets.filterIsInstance<KotlinNativeTarget>()
         .filter { it.konanTarget.family == Family.IOS }
@@ -44,8 +49,4 @@ kotlin {
             }
         }
     }
-}
-
-android {
-    namespace = "dev.sdkforge.template"
 }

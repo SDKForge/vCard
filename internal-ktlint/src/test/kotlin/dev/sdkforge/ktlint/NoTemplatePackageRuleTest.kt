@@ -16,7 +16,7 @@ class NoTemplatePackageRuleTest {
         fun android(action: Config.() -> Unit) = Unit
         
         fun main() {
-            android {
+            androidLibrary {
                 namespace = "dev.sdkforge.template.android"
                 compileSdk = 36
             }

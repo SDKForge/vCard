@@ -57,7 +57,7 @@ import org.gradle.language.base.plugins.LifecycleBasePlugin
  *
  * ## Dependencies
  *
- * - **ktlint-cli**: 1.7.1
+ * - **ktlint-cli**: 1.8.0
  * - **internal-ktlint**: Custom rules for forked projects (if applicable)
  *
  * ## Reports
@@ -72,12 +72,14 @@ import org.gradle.language.base.plugins.LifecycleBasePlugin
  * @see [ktlint CLI Usage](https://pinterest.github.io/ktlint/install/cli/#command-line-usage)
  */
 class KtLintPlugin : Plugin<Project> {
-    override fun apply(target: Project) {
+    override fun apply(
+        target: Project,
+    ) {
         with(target) {
             val ktlint = configurations.create("ktlint")
 
             dependencies {
-                ktlint("com.pinterest.ktlint:ktlint-cli:1.7.1") {
+                ktlint("com.pinterest.ktlint:ktlint-cli:1.8.0") {
                     attributes {
                         attribute(Bundling.BUNDLING_ATTRIBUTE, objects.named(Bundling.EXTERNAL))
                     }
@@ -102,12 +104,14 @@ class KtLintPlugin : Plugin<Project> {
                 mainClass.set("com.pinterest.ktlint.Main")
                 // see https://pinterest.github.io/ktlint/install/cli/#command-line-usage for more information
                 args(
-                    "src/**/*.kt",                                  // Include all Kotlin source files
-                    "**.kts",                                               // Include all Kotlin script files
-                    "!**/build/**",                                         // Exclude build directories
-                    "!**/shared-template/build.gradle.kts",                 // Exclude template file
-                    "--editorconfig", "${rootDir.path}/.editorconfig",      // Use project editorconfig
-                    "--reporter", "html,output=${reportFile.absolutePath}", // Generate HTML report
+                    "src/**/*.kt", // Include all Kotlin source files
+                    "**.kts", // Include all Kotlin script files
+                    "!**/build/**", // Exclude build directories
+                    "!**/shared-template/build.gradle.kts", // Exclude template file
+                    "--editorconfig",
+                    "${rootDir.path}/.editorconfig", // Use project editorconfig
+                    "--reporter",
+                    "html,output=${reportFile.absolutePath}", // Generate HTML report
                 )
             }
 
@@ -122,16 +126,15 @@ class KtLintPlugin : Plugin<Project> {
                 jvmArgs("--sun-misc-unsafe-memory-access=allow")
                 // see https://pinterest.github.io/ktlint/install/cli/#command-line-usage for more information
                 args(
-                    "-F",                                           // Format flag for automatic formatting
-                    "src/**/*.kt",                                          // Include all Kotlin source files
-                    "**.kts",                                               // Include all Kotlin script files
-                    "!**/build/**",                                         // Exclude build directories
-                    "!**/shared-template/build.gradle.kts",                 // Exclude template file
-                    "--editorconfig", "${rootDir.path}/.editorconfig",      // Use project editorconfig
+                    "-F", // Format flag for automatic formatting
+                    "src/**/*.kt", // Include all Kotlin source files
+                    "**.kts", // Include all Kotlin script files
+                    "!**/build/**", // Exclude build directories
+                    "!**/shared-template/build.gradle.kts", // Exclude template file
+                    "--editorconfig", "${rootDir.path}/.editorconfig", // Use project editorconfig
                     "--reporter", "html,output=${reportFile.absolutePath}", // Generate HTML report
                 )
             }
         }
     }
 }
-

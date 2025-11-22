@@ -37,7 +37,7 @@ import okio.Path.Companion.toOkioPath
  * @param file The Android File object containing vCard data
  * @return A [VCard] object representing the parsed data
  * @throws IllegalArgumentException if the vCard data is invalid or missing required properties
- * @throws IOException if the file cannot be read
+ * @throws okio.IOException if the file cannot be read
  *
  * @see dev.sdkforge.vcard.domain.VCard
  * @see dev.sdkforge.vcard.data.parsing.readVCard

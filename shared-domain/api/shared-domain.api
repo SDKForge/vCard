@@ -264,3 +264,95 @@ public final class dev/sdkforge/vcard/domain/property/Xml : dev/sdkforge/vcard/d
 	public fun getKey ()Ljava/lang/String;
 }
 
+public abstract interface class dev/sdkforge/vcard/domain/property/parameter/Parameter {
+	public abstract fun getKey ()Ljava/lang/String;
+}
+
+public final class dev/sdkforge/vcard/domain/property/parameter/Parameter$AlternativeId : dev/sdkforge/vcard/domain/property/parameter/Parameter {
+	public static final field INSTANCE Ldev/sdkforge/vcard/domain/property/parameter/Parameter$AlternativeId;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getKey ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/sdkforge/vcard/domain/property/parameter/Parameter$CalendarSystem : dev/sdkforge/vcard/domain/property/parameter/Parameter {
+	public static final field INSTANCE Ldev/sdkforge/vcard/domain/property/parameter/Parameter$CalendarSystem;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getKey ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/sdkforge/vcard/domain/property/parameter/Parameter$Geo : dev/sdkforge/vcard/domain/property/parameter/Parameter {
+	public static final field INSTANCE Ldev/sdkforge/vcard/domain/property/parameter/Parameter$Geo;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getKey ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/sdkforge/vcard/domain/property/parameter/Parameter$Language : dev/sdkforge/vcard/domain/property/parameter/Parameter {
+	public static final field INSTANCE Ldev/sdkforge/vcard/domain/property/parameter/Parameter$Language;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getKey ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/sdkforge/vcard/domain/property/parameter/Parameter$MediaType : dev/sdkforge/vcard/domain/property/parameter/Parameter {
+	public static final field INSTANCE Ldev/sdkforge/vcard/domain/property/parameter/Parameter$MediaType;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getKey ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/sdkforge/vcard/domain/property/parameter/Parameter$Preferred : dev/sdkforge/vcard/domain/property/parameter/Parameter {
+	public static final field INSTANCE Ldev/sdkforge/vcard/domain/property/parameter/Parameter$Preferred;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getKey ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/sdkforge/vcard/domain/property/parameter/Parameter$PropertyId : dev/sdkforge/vcard/domain/property/parameter/Parameter {
+	public static final field INSTANCE Ldev/sdkforge/vcard/domain/property/parameter/Parameter$PropertyId;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getKey ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/sdkforge/vcard/domain/property/parameter/Parameter$SortAs : dev/sdkforge/vcard/domain/property/parameter/Parameter {
+	public static final field INSTANCE Ldev/sdkforge/vcard/domain/property/parameter/Parameter$SortAs;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getKey ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/sdkforge/vcard/domain/property/parameter/Parameter$TimeZone : dev/sdkforge/vcard/domain/property/parameter/Parameter {
+	public static final field INSTANCE Ldev/sdkforge/vcard/domain/property/parameter/Parameter$TimeZone;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getKey ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/sdkforge/vcard/domain/property/parameter/Parameter$Type : dev/sdkforge/vcard/domain/property/parameter/Parameter {
+	public static final field INSTANCE Ldev/sdkforge/vcard/domain/property/parameter/Parameter$Type;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getKey ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/sdkforge/vcard/domain/property/parameter/Parameter$Value : dev/sdkforge/vcard/domain/property/parameter/Parameter {
+	public static final field INSTANCE Ldev/sdkforge/vcard/domain/property/parameter/Parameter$Value;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getKey ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+

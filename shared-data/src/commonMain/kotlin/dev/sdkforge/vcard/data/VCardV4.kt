@@ -56,6 +56,10 @@ internal data class VCardV4(
         require(properties.containsKey(FormattedName)) { "vCard must have FN" }
         require(properties.containsKey(End)) { "vCard must have END" }
 
+        require(properties[Begin]?.first() == "VCARD") { "BEGIN must be VCARD" }
+        require(properties[Version]?.first() == "4.0") { "Version must be 4.0" }
+        require(properties[End]?.first() == "VCARD") { "END must be VCARD" }
+
         // Validate cardinality rules for all properties
         require(properties.all { (property, input) -> CardinalityValidation.isValid(property, input) })
     }

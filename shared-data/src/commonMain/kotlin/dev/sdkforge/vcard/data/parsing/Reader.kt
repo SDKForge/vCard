@@ -83,7 +83,7 @@ import okio.SYSTEM
  */
 fun readVCard(string: String): VCard = VCardV4(
     properties = buildMap {
-        for (line in string.split('\n')) {
+        for (line in string.lines()) {
             val (property, value) = mapLineToData(line)
             if (property != null) {
                 this[property] = this[property].orEmpty() + value
@@ -113,7 +113,7 @@ fun readVCard(string: String): VCard = VCardV4(
  * @param path The file path to read the vCard from
  * @return A [VCard] object representing the parsed data
  * @throws IllegalArgumentException if the vCard data is invalid or missing required properties
- * @throws IOException if the file cannot be read
+ * @throws okio.IOException if the file cannot be read
  *
  * @see dev.sdkforge.vcard.domain.VCard
  * @see dev.sdkforge.vcard.data.VCardV4
@@ -123,7 +123,7 @@ fun readVCard(path: Path): VCard = VCardV4(
         FileSystem.SYSTEM.read(path) {
             while (true) {
                 val string = readUtf8Line() ?: break
-                for (line in string.split('\n')) {
+                for (line in string.lines()) {
                     val (property, value) = mapLineToData(line)
                     if (property != null) {
                         this@buildMap[property] = this@buildMap[property].orEmpty() + value
@@ -148,7 +148,12 @@ private fun mapLineToData(line: String): Pair<Property?, String> {
     val parts = line.split(":", ";", limit = 2)
     val key = parts[0]
     val value = parts[1]
-    return PROPERTY_VALUES.firstOrNull { property -> property.key == key } to value
+        // values are trimmed
+        .trim()
+        // some properties have escaped values, we need to unescape them
+        .replace("\\\\,", ",")
+        .replace("\\\\;", ";")
+    return PROPERTY_VALUES.firstOrNull { property -> property.key.equals(key, ignoreCase = true) } to value
 }
 
 // Property value sets organized by category

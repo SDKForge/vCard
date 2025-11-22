@@ -1,4 +1,2 @@
-com.squareup.okio:okio-jvm:3.16.0
-com.squareup.okio:okio:3.16.0
 org.jetbrains.kotlin:kotlin-stdlib:2.2.21
 org.jetbrains:annotations:13.0
